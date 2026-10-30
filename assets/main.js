@@ -83,26 +83,26 @@
   // 微信内置浏览器：桥接就绪后可以尝试直接带声音播放
   document.addEventListener('WeixinJSBridgeReady', () => { if (current) playVideo(current); });
 
-  if (mobile) {
-    const vio = new IntersectionObserver((entries) => {
-      for (const e of entries) {
-        const v = e.target;
-        if (e.isIntersecting) load(v);
-        if (e.intersectionRatio >= 0.6) playVideo(v);
-        else stopVideo(v);
-      }
-    }, { threshold: [0, 0.6] });
-    videos.forEach((v) => vio.observe(v));
-  } else {
-    const vio = new IntersectionObserver((entries) => {
-      for (const e of entries) {
-        const v = e.target._video;
-        if (e.isIntersecting) playVideo(v);
-        else stopVideo(v);
-      }
-    }, { rootMargin: '30% 0px 30% 0px' });
-    videos.forEach((v) => { const sec = v.closest('.opener'); sec._video = v; vio.observe(sec); });
-  }
+  // 离得近就提前加载；但只有视频本身一半以上在屏幕上才播放，少于一半立刻暂停（避免滑走后还在后台出声）
+  const pre = new IntersectionObserver((entries) => {
+    for (const e of entries) if (e.isIntersecting) load(e.target._video);
+  }, { rootMargin: '50% 0px 50% 0px' });
+  const vis = new IntersectionObserver((entries) => {
+    for (const e of entries) {
+      if (e.intersectionRatio >= 0.5) playVideo(e.target);
+      else stopVideo(e.target);
+    }
+  }, { threshold: [0, 0.5] });
+  videos.forEach((v) => {
+    const sec = v.closest('.opener');
+    sec._video = v;
+    pre.observe(sec);
+    vis.observe(v);
+  });
+  // 切到别的应用／标签页时暂停，回来再按可见情况继续
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) videos.forEach((v) => v.pause());
+  });
 
   // 一个按钮切换：有声时显示“静音”，静音时显示“开声音”
   document.querySelectorAll('.snd').forEach((btn) => {
