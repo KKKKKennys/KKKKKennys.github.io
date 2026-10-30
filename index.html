@@ -7,7 +7,11 @@
 <meta name="description" content="李铿 Kenny，3D 美术（场景／道具方向）作品集：NEREID 深海科研站、幻想风角色工作室、AK-50 硬表面武器、原创吉祥物聚光灯精灵、夜间室内办公室。">
 <meta name="theme-color" content="#05080f">
 <link rel="preload" href="assets/fonts/unbounded-sub.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="assets/style.css?v=20261031-3">
+<link rel="preload" as="image" href="assets/img/hero-1600.webp" fetchpriority="high" media="(max-width: 899px)"
+  imagesrcset="assets/img/hero-800.webp 800w, assets/img/hero-1600.webp 1600w" imagesizes="100vw">
+<link rel="preload" as="image" href="assets/img/hero-1600.webp" fetchpriority="high" media="(min-width: 900px)"
+  imagesrcset="assets/img/hero-800.webp 800w, assets/img/hero-1600.webp 1600w, assets/img/hero-2400.webp 2400w" imagesizes="100vw">
+<link rel="stylesheet" href="assets/style.css?v=20261031-loading-v2">
 </head>
 <body>
 <div class="progress" aria-hidden="true"><i></i></div>
@@ -21,9 +25,9 @@
 <!-- 开场 -->
 <section class="hero scene" id="top">
   <div class="stage">
-    <img class="cover" src="assets/img/hero-1600.webp"
+    <picture class="hero-picture"><source media="(max-width: 899px)" srcset="assets/img/hero-800.webp 800w, assets/img/hero-1600.webp 1600w" sizes="100vw"><img style="background:#0b1018 url(data:image/webp;base64,UklGRoQAAABXRUJQVlA4IHgAAABQBACdASoYABAAPu1iqU2ppaOiMAgBMB2JbACdMoAC2XXbk0VGWqk0564AAP7uoEtI7/vwgZ9/M5tAMmw+HZtaXvJPv3HgUXUcgf0Vi6OZG8hww0rvLauAKbcF/tME7lKxa0AUNKV1Wf9nFqudhwp8Y/OX2q6AAAA=) center/cover no-repeat" width="1600" height="1067" class="cover" src="assets/img/hero-1600.webp"
       srcset="assets/img/hero-800.webp 800w, assets/img/hero-1600.webp 1600w, assets/img/hero-2400.webp 2400w"
-      sizes="(orientation: portrait) 330vw, 100vw" alt="NEREID 深海科研站外观" fetchpriority="high">
+      sizes="100vw" alt="NEREID 深海科研站外观" fetchpriority="high"></picture>
     <div class="shade"></div>
     <div class="hero-copy">
       <p class="kicker">3D ARTIST · PORTFOLIO 2026</p>
@@ -38,7 +42,7 @@
 <!-- 关于我 -->
 <section class="about wrap" id="about">
   <div class="about-head">
-    <img class="portrait reveal" src="assets/img/portrait-600.webp"
+    <img style="background:#0b1018 url(data:image/webp;base64,UklGRuYAAABXRUJQVlA4INoAAACwBQCdASoYACAAPt1WpU2opKOiN/qoARAbiWwAqSM3AXk/fYLJVFjpEc+81ltyi5R+vZ0YcsAA/nFhK0wsq427ZmU3ahGe/nxyz/LKH2KLLIiic1YCJnorGNGj9+7KGeqDv9QsVYSOCrURp5qjYYv5vu87zkFiw7NgGRHt84f0Amhwrx1LFF9f5+z11SQO+9mQ3xOxjZh/OVra3lsxiGrNbX2iRexTm8rySk15s54Re+7eZNCh7qy2AZkrz0J6z2NXXkQBsB7xbup2XorAFPfdKN1XU2m8GqAAAA==) center/cover no-repeat" width="600" height="800" class="portrait reveal" src="assets/img/portrait-600.webp"
       srcset="assets/img/portrait-600.webp 600w, assets/img/portrait-1000.webp 1000w"
       sizes="(min-width: 900px) 340px, 64vw" alt="李铿" loading="lazy">
     <div class="reveal" style="--d:.1s">
@@ -81,9 +85,9 @@
 <article class="project" id="nereid">
   <section class="opener scene">
     <div class="stage">
-      <div class="frame"><img src="assets/img/nereid-07-1600.webp"
+      <div class="frame"><img width="1600" height="1231" src="assets/img/nereid-07-1600.webp"
         srcset="assets/img/nereid-07-800.webp 800w, assets/img/nereid-07-1600.webp 1600w, assets/img/nereid-07-2400.webp 2400w"
-        sizes="100vw" alt="NEREID 左侧整体视角" loading="lazy" style="object-position:42% 45%"></div>
+        sizes="100vw" alt="NEREID 左侧整体视角" loading="lazy" style="background:#0b1018 url(data:image/webp;base64,UklGRpQAAABXRUJQVlA4IIgAAABQBACdASoYABIAPu1qrlCppaQiqAqpMB2JZgCdMoABXMucSscHHc8Zm1QAAP7lr4Ru4cUdXJ1hQJeN0KyK518Lw4gaX7PCjsLCIAdGknZ2324jewX0kEP6yLLwePrIdJ8mN/Sk/qZkU2i+Szk6XUyI6mZcKKFDIFapERaR+aq9FmuizWTMwAAA) center/cover no-repeat;object-position:42% 45%"></div>
       <div class="shade"></div>
       <div class="num">01</div>
       <div class="title"><h2>NEREID<br>DEEP-SEA RESEARCH STATION</h2><p>NEREID 深海科研站 · 个人项目 · 2026.10</p></div>
@@ -99,11 +103,11 @@
     <div class="stage">
       <div class="head"><p class="eyebrow">Interior · 室内与细节</p><h3>控制室、实验台、通道、卧室和舱体</h3></div>
       <div class="track">
-        <figure><img src="assets/img/nereid-04-1600.webp" srcset="assets/img/nereid-04-800.webp 800w, assets/img/nereid-04-1600.webp 1600w" sizes="(min-width: 900px) 62vw, 84vw" alt="控制室" loading="lazy"><figcaption><b>04</b>控制室</figcaption></figure>
-        <figure><img src="assets/img/nereid-05-1400.webp" srcset="assets/img/nereid-05-800.webp 800w, assets/img/nereid-05-1400.webp 1400w" sizes="(min-width: 900px) 62vw, 84vw" alt="实验台" loading="lazy"><figcaption><b>05</b>实验台</figcaption></figure>
-        <figure><img src="assets/img/nereid-06-1400.webp" srcset="assets/img/nereid-06-800.webp 800w, assets/img/nereid-06-1400.webp 1400w" sizes="(min-width: 900px) 62vw, 84vw" alt="连接通道" loading="lazy"><figcaption><b>06</b>连接通道</figcaption></figure>
-        <figure><img src="assets/img/nereid-10-1400.webp" srcset="assets/img/nereid-10-800.webp 800w, assets/img/nereid-10-1400.webp 1400w" sizes="(min-width: 900px) 62vw, 84vw" alt="船员卧室" loading="lazy"><figcaption><b>10</b>船员卧室</figcaption></figure>
-        <figure><img src="assets/img/nereid-02-1400.webp" srcset="assets/img/nereid-02-800.webp 800w, assets/img/nereid-02-1400.webp 1400w" sizes="(min-width: 900px) 62vw, 84vw" alt="主舱立面近景" loading="lazy"><figcaption><b>02</b>主舱立面近景</figcaption></figure>
+        <figure><img style="background:#0b1018 url(data:image/webp;base64,UklGRpIAAABXRUJQVlA4IIYAAAAQBACdASoYABAAPu1iqk2ppaQiMAgBMB2JQAh/9t/gMUfqys26MADucAD+8Rr7dvIC9awymVc12Vk3RP3Zeph5R4XGMhSQS4SYt8qO953Zh/rJWYTCYTACiL0IPOOx+72t1kBppDTbhuLV1W2w7oiHESD1H1oyhiyPx/8mzNNCHsWzxEpgAA==) center/cover no-repeat" width="1600" height="1067" src="assets/img/nereid-04-1600.webp" srcset="assets/img/nereid-04-800.webp 800w, assets/img/nereid-04-1600.webp 1600w" sizes="(min-width: 900px) 62vw, 84vw" alt="控制室" loading="lazy"><figcaption><b>04</b>控制室</figcaption></figure>
+        <figure><img style="background:#0b1018 url(data:image/webp;base64,UklGRoQAAABXRUJQVlA4IHgAAADwAwCdASoYABAAPu1iqU2ppaOiMAgBMB2JZwDKAB5TIZw3A3epKeAAAP7w4MGWAVMZfxY/YCUswDA+Am9qt+F0zmalfE1L+7XMOG58X07+WLfAyxAMASbyTtWCOb88b/s5WJYhlDbltzVSXXTdMQ0yuxY9FqFAAAA=) center/cover no-repeat" width="1400" height="933" src="assets/img/nereid-05-1400.webp" srcset="assets/img/nereid-05-800.webp 800w, assets/img/nereid-05-1400.webp 1400w" sizes="(min-width: 900px) 62vw, 84vw" alt="实验台" loading="lazy"><figcaption><b>05</b>实验台</figcaption></figure>
+        <figure><img style="background:#0b1018 url(data:image/webp;base64,UklGRnwAAABXRUJQVlA4IHAAAACwAwCdASoYABAAPu1iqU2ppaOiMAgBMB2JYwCdABohVpudYEDnQAD+7QU+Ir0W8GoN0WD9mmkkEDLjq4ckv17NVgl9olDSvZaXNzzIe3PhouVhxBxMQpzup31seFVxKjsVd0ePzz2CAWOSfAq0UoAA) center/cover no-repeat" width="1400" height="933" src="assets/img/nereid-06-1400.webp" srcset="assets/img/nereid-06-800.webp 800w, assets/img/nereid-06-1400.webp 1400w" sizes="(min-width: 900px) 62vw, 84vw" alt="连接通道" loading="lazy"><figcaption><b>06</b>连接通道</figcaption></figure>
+        <figure><img style="background:#0b1018 url(data:image/webp;base64,UklGRnAAAABXRUJQVlA4IGQAAABwBACdASoYABMAPu1gqE2ppaOiMAgBMB2JYwAAW+zLNawQW9AKK3/wp9BbAAD+9B3L2w3gTPc9zKtuNk0DJqNSEU0UMGNguXJWKpAx1u5IMLrS3l8gMO0K48xOrKf/EzT/gAAA) center/cover no-repeat" width="1400" height="1120" src="assets/img/nereid-10-1400.webp" srcset="assets/img/nereid-10-800.webp 800w, assets/img/nereid-10-1400.webp 1400w" sizes="(min-width: 900px) 62vw, 84vw" alt="船员卧室" loading="lazy"><figcaption><b>10</b>船员卧室</figcaption></figure>
+        <figure><img style="background:#0b1018 url(data:image/webp;base64,UklGRqQAAABXRUJQVlA4IJgAAACwBACdASoYABEAPu1qrlCppaQiqAqpMB2JZgCdMoABw7CpB7NhxwfLzlFBdvhAAP7qTK/ax1YSIySRccKuyT8nwl5IVCUGAWgF6E0s/A94HldyW23K2BnX4mRwZV0+CWW3NEAulGvFuFhCIa+D4fPLISZndEPMjeOf6z3UVpsGJvgxN8GJvfv4mNAnFra9+KSuUFZPQKEAAA==) center/cover no-repeat" width="1400" height="983" src="assets/img/nereid-02-1400.webp" srcset="assets/img/nereid-02-800.webp 800w, assets/img/nereid-02-1400.webp 1400w" sizes="(min-width: 900px) 62vw, 84vw" alt="主舱立面近景" loading="lazy"><figcaption><b>02</b>主舱立面近景</figcaption></figure>
       </div>
     </div>
   </section>
@@ -117,9 +121,9 @@
     <div class="stage">
       <div class="head"><p class="eyebrow">Iteration · 同一机位的迭代</p></div>
       <div class="frames">
-        <img class="frame" src="assets/img/nereid-v12-1200.webp" srcset="assets/img/nereid-v12-800.webp 800w, assets/img/nereid-v12-1200.webp 1200w" sizes="(min-width: 900px) 70vw, 92vw" alt="V12" loading="lazy">
-        <img class="frame" src="assets/img/nereid-v47-1000.webp" srcset="assets/img/nereid-v47-800.webp 800w, assets/img/nereid-v47-1000.webp 1000w" sizes="(min-width: 900px) 70vw, 92vw" alt="V47" loading="lazy">
-        <img class="frame" src="assets/img/nereid-v48-1400.webp" srcset="assets/img/nereid-v48-800.webp 800w, assets/img/nereid-v48-1400.webp 1400w" sizes="(min-width: 900px) 70vw, 92vw" alt="V48 定稿" loading="lazy">
+        <img style="background:#0b1018 url(data:image/webp;base64,UklGRoIAAABXRUJQVlA4IHYAAAAwBACdASoYABAAPu1iqk2ppaQiMAgBMB2JZACdLwABye9FAjyhOp5JRpAA/uMONQum2w9VnL4nBUwI1JlpMR2baYfOhvuzo6GJPXmTWHlcH8zEsNMdnrLEem80kbSZWMy4JWay3ifAFUGbe1IeUyoWbGYxAAAA) center/cover no-repeat" width="1200" height="800" class="frame" src="assets/img/nereid-v12-1200.webp" srcset="assets/img/nereid-v12-800.webp 800w, assets/img/nereid-v12-1200.webp 1200w" sizes="(min-width: 900px) 70vw, 92vw" alt="V12" loading="lazy">
+        <img style="background:#0b1018 url(data:image/webp;base64,UklGRooAAABXRUJQVlA4IH4AAABwBACdASoYABAAPu1iqU2ppaOiMAgBMB2JZgCdMoRwAB3gNJI7G1jmJZoNQAD+6/51cKF89vtvTVdUvm6dPB9G3d9lYY7J0DF2QuSsYalXeHwE9hYjHCVcpDy9+17uf1BOj2Udwrwkh8f9Hn1zs9E1nZIHSZ3a81K0iE4AAAA=) center/cover no-repeat" width="1000" height="667" class="frame" src="assets/img/nereid-v47-1000.webp" srcset="assets/img/nereid-v47-800.webp 800w, assets/img/nereid-v47-1000.webp 1000w" sizes="(min-width: 900px) 70vw, 92vw" alt="V47" loading="lazy">
+        <img style="background:#0b1018 url(data:image/webp;base64,UklGRogAAABXRUJQVlA4IHwAAABwBACdASoYABAAPu1iqU2ppaOiMAgBMB2JbACdMoAC2V0zkwR2VdaI36404AD+7qkICmdGlATQ5AyQgKKbR3hq/BBzHyTqcuXFtwyp8n0a78kqun+SW08yO+IVW3MwgWfXe/5W1JE8QWSZqKEWZb4Yzp0IhwvVh1JMAAAA) center/cover no-repeat" width="1400" height="933" class="frame" src="assets/img/nereid-v48-1400.webp" srcset="assets/img/nereid-v48-800.webp 800w, assets/img/nereid-v48-1400.webp 1400w" sizes="(min-width: 900px) 70vw, 92vw" alt="V48 定稿" loading="lazy">
       </div>
       <ol class="captions">
         <li><b>V12 · 2026.10.08</b><h3>结构与比例</h3><p>确定圆形主舱、连接通道和球形副舱的布局，按批注还原外壳部件。</p></li>
@@ -147,9 +151,10 @@
   <section class="opener scene">
     <div class="stage">
       <div class="frame is-video">
-        <video class="bgv" muted loop playsinline preload="none" poster="assets/video/ak50-poster.webp" data-src="assets/video/ak50" aria-label="AK-50 拆装动画"></video>
+        <video style="background:#0b1018 url(data:image/webp;base64,UklGRm4AAABXRUJQVlA4IGIAAADQAwCdASoYAA4APu1yrU+pp6QiMAgBMB2JZQC7AB6WS1Arzoye8sAA/vK0uF0X0acBUQJ4s3vMXQQ4Hc6HR42AFU1Thddq6yFEzQyTOzq2k636bG8NDz3ewT9Xr6zGSHwAAA==) center/cover no-repeat" width="1920" height="1080" class="bgv" muted loop playsinline preload="none" poster="assets/video/ak50-poster.webp" data-src="assets/video/ak50" aria-label="AK-50 拆装动画"></video>
+        <button class="glass loading" type="button" disabled aria-live="polite"><i aria-hidden="true"></i><span>视频加载中，请稍等</span></button>
       </div>
-      <button class="glass snd" type="button">开声音</button>
+      <div class="vctl"><span class="preview-note">10 秒预览</span><button class="glass full" type="button">看完整版</button><button class="glass snd" type="button">开声音</button></div>
       <div class="shade"></div>
       <div class="num">02</div>
       <div class="title"><h2>AK-50<br>HARD-SURFACE WEAPON</h2><p>AK-50 硬表面武器展示 · 个人项目 · 2026.10</p></div>
@@ -162,7 +167,7 @@
   </section>
 
   <section class="block two wrap">
-    <figure class="rimg reveal"><img src="assets/img/ak-flatlay-1600.webp" srcset="assets/img/ak-flatlay-800.webp 800w, assets/img/ak-flatlay-1600.webp 1600w, assets/img/ak-flatlay-2400.webp 2400w" sizes="(min-width: 900px) 50vw, 92vw" alt="拆解平铺" loading="lazy"></figure>
+    <figure class="rimg reveal"><img style="background:#0b1018 url(data:image/webp;base64,UklGRnAAAABXRUJQVlA4IGQAAADQAwCdASoYAA4APu1kqU2ppaQiMAgBMB2JYwCdABsx3PlGhrpsVQAA/uZgVlWRXGIzRnHL+e4lnhukPM00PcTxv0ElPhz4kxLhlZPf8XNHlFTWcfDA/Huxj8rI1IgkOD2uwAAA) center/cover no-repeat" width="1600" height="900" src="assets/img/ak-flatlay-1600.webp" srcset="assets/img/ak-flatlay-800.webp 800w, assets/img/ak-flatlay-1600.webp 1600w, assets/img/ak-flatlay-2400.webp 2400w" sizes="(min-width: 900px) 50vw, 92vw" alt="拆解平铺" loading="lazy"></figure>
     <div class="reveal" style="--d:.1s"><p class="eyebrow">Animation · 28s 4K</p><h3>运镜跟着拆卸节奏走</h3>
       <ul>
         <li>枪按功能分成 11 组，内部补了枪机、弹簧等内部件</li>
@@ -176,10 +181,10 @@
     <div class="stage">
       <div class="head"><p class="eyebrow">Details · 细节</p><h3>磨损、刻字和分缝都清楚可读</h3></div>
       <div class="track">
-        <figure><img src="assets/img/ak-04-1600.webp" srcset="assets/img/ak-04-800.webp 800w, assets/img/ak-04-1600.webp 1600w" sizes="(min-width: 900px) 62vw, 84vw" alt="机匣与扳机" loading="lazy"><figcaption><b>04</b>机匣与扳机</figcaption></figure>
-        <figure><img src="assets/img/ak-05-1600.webp" srcset="assets/img/ak-05-800.webp 800w, assets/img/ak-05-1600.webp 1600w" sizes="(min-width: 900px) 62vw, 84vw" alt="倍镜与基座" loading="lazy"><figcaption><b>05</b>倍镜与基座</figcaption></figure>
-        <figure><img src="assets/img/ak-06-1600.webp" srcset="assets/img/ak-06-800.webp 800w, assets/img/ak-06-1600.webp 1600w" sizes="(min-width: 900px) 62vw, 84vw" alt="护木与枪口" loading="lazy"><figcaption><b>06</b>护木与枪口</figcaption></figure>
-        <figure><img src="assets/img/ak-08-1600.webp" srcset="assets/img/ak-08-800.webp 800w, assets/img/ak-08-1600.webp 1600w" sizes="(min-width: 900px) 62vw, 84vw" alt="拨杆特写" loading="lazy"><figcaption><b>08</b>拨杆特写</figcaption></figure>
+        <figure><img style="background:#0b1018 url(data:image/webp;base64,UklGRnAAAABXRUJQVlA4IGQAAABwAwCdASoYAA4APu1iqk2ppaQiMAgBMB2JZQAAWXEQElwnjYAA/uMVS4Eop45VelRrfIsBM+SUjKa/qXZjQgrqXFD0bNaNkxdZkVhNy5o4QI1p5ztcVtr0q+ukd27IDe6pgugA) center/cover no-repeat" width="1600" height="900" src="assets/img/ak-04-1600.webp" srcset="assets/img/ak-04-800.webp 800w, assets/img/ak-04-1600.webp 1600w" sizes="(min-width: 900px) 62vw, 84vw" alt="机匣与扳机" loading="lazy"><figcaption><b>04</b>机匣与扳机</figcaption></figure>
+        <figure><img style="background:#0b1018 url(data:image/webp;base64,UklGRnIAAABXRUJQVlA4IGYAAAAQBACdASoYAA4APu1iqk4ppaQiMAgBMB2JZwDDNBuxHVe0S22NHlq7gAD+y/XxgOaGLoKiIGYlQijg0+26laHWvzziFcXU4TqR0hUUcG9KxF60oa9Qc644d/F/qM7z5SQc9TUAAAA=) center/cover no-repeat" width="1600" height="900" src="assets/img/ak-05-1600.webp" srcset="assets/img/ak-05-800.webp 800w, assets/img/ak-05-1600.webp 1600w" sizes="(min-width: 900px) 62vw, 84vw" alt="倍镜与基座" loading="lazy"><figcaption><b>05</b>倍镜与基座</figcaption></figure>
+        <figure><img style="background:#0b1018 url(data:image/webp;base64,UklGRnQAAABXRUJQVlA4IGgAAACwAwCdASoYAA4APu1Ct1apoqakGAEwHYllAAA3YwsMBTouztUPgAD+0MV2Vz30HiC0j0bevOJgTHcYYXx6t1lXdQp+Ji4nDErtK6u8bRfctiCf3V6Y+aRByd4YH/UlbknTXsvvqsAAAA==) center/cover no-repeat" width="1600" height="900" src="assets/img/ak-06-1600.webp" srcset="assets/img/ak-06-800.webp 800w, assets/img/ak-06-1600.webp 1600w" sizes="(min-width: 900px) 62vw, 84vw" alt="护木与枪口" loading="lazy"><figcaption><b>06</b>护木与枪口</figcaption></figure>
+        <figure><img style="background:#0b1018 url(data:image/webp;base64,UklGRoIAAABXRUJQVlA4IHYAAADQAwCdASoYAA4APu1mqk4ppaOiMAgBMB2JZwDLLB9D+JQpB50LsvAA/p7FnWvt0kRVDhBEZdDXv9HVEDslyNC86+t5QN7Ynfxmlq1lYKNGX5x3xYeqzExMOt9njhojiWj9ZDELB+LWdKMHnAMB7xoJwNJkugAA) center/cover no-repeat" width="1600" height="900" src="assets/img/ak-08-1600.webp" srcset="assets/img/ak-08-800.webp 800w, assets/img/ak-08-1600.webp 1600w" sizes="(min-width: 900px) 62vw, 84vw" alt="拨杆特写" loading="lazy"><figcaption><b>08</b>拨杆特写</figcaption></figure>
       </div>
     </div>
   </section>
@@ -187,15 +192,15 @@
   <section class="block wrap">
     <div class="reveal"><p class="eyebrow">Clay ↔ Wire · 拖动对比</p><h3>白模与线框</h3></div>
     <div class="compare reveal" style="--ar:1600/760">
-      <img class="bot" src="assets/img/ak-wire-1600.webp" srcset="assets/img/ak-wire-800.webp 800w, assets/img/ak-wire-1600.webp 1600w" sizes="(min-width: 900px) 80vw, 92vw" alt="线框" loading="lazy">
-      <img class="top" src="assets/img/ak-clay-1600.webp" srcset="assets/img/ak-clay-800.webp 800w, assets/img/ak-clay-1600.webp 1600w" sizes="(min-width: 900px) 80vw, 92vw" alt="白模" loading="lazy">
+      <img style="background:#0b1018 url(data:image/webp;base64,UklGRmIAAABXRUJQVlA4IFYAAACwAwCdASoYAAsAPu1iqU2ppaOiMAgBMB2JZwCdACHYn5QVh+WAAAD+2LETwkELJ96qB/LMGS8KfOASuyS71pkw/2cFLdJc8hx63ww0e60rUKfaIW4AAA==) center/cover no-repeat" width="1600" height="760" class="bot" src="assets/img/ak-wire-1600.webp" srcset="assets/img/ak-wire-800.webp 800w, assets/img/ak-wire-1600.webp 1600w" sizes="(min-width: 900px) 80vw, 92vw" alt="线框" loading="lazy">
+      <img style="background:#0b1018 url(data:image/webp;base64,UklGRmIAAABXRUJQVlA4IFYAAADQAwCdASoYAAsAPu1iqU2ppaOiMAgBMB2JZwCo9CHetS2C48jZ+AAA/ti9zrCUXR6R1lv3+mAIIV0Hx4aBd2VYAj5wjmqe7YiKL8AT5qiy/QVXXryIAA==) center/cover no-repeat" width="1600" height="760" class="top" src="assets/img/ak-clay-1600.webp" srcset="assets/img/ak-clay-800.webp 800w, assets/img/ak-clay-1600.webp 1600w" sizes="(min-width: 900px) 80vw, 92vw" alt="白模" loading="lazy">
       <i class="bar"></i><span class="glass knob">‹ ›</span>
       <span class="glass lab l">CLAY</span><span class="glass lab r">WIRE</span>
     </div>
   </section>
 
   <section class="block two wrap">
-    <figure class="rimg reveal narrow"><img src="assets/img/ak-painter-800.webp" alt="Substance Painter 纹理集与图层" loading="lazy"></figure>
+    <figure class="rimg reveal narrow"><img style="background:#0b1018 url(data:image/webp;base64,UklGRmYAAABXRUJQVlA4IFoAAACQBACdASoYABoAPu1qq1EppaOiqAqpMB2JaQAAKWXhRkhhs73CIO+bsmadgAAA/sxV0l2x44NZnVyp1rr4cgwuKtIrZjv8OFfNGUCyd7bjJB5Z+CdkLUCYwAA=) center/cover no-repeat" width="800" height="875" src="assets/img/ak-painter-800.webp" alt="Substance Painter 纹理集与图层" loading="lazy"></figure>
     <div class="reveal" style="--d:.1s"><p class="eyebrow">PBR Textures</p><h3>做旧一层一层叠上去</h3>
       <p>Substance Painter 里按部件分纹理集（机身、弹匣、护木、握把、倍镜等，4K／2K）。</p>
       <ul>
@@ -207,7 +212,7 @@
   </section>
 
   <section class="block wrap">
-    <figure class="rimg reveal"><img src="assets/img/ak-leverfix-1600.webp" srcset="assets/img/ak-leverfix-800.webp 800w, assets/img/ak-leverfix-1600.webp 1600w" sizes="(min-width: 900px) 80vw, 92vw" alt="拨杆修正前后" loading="lazy"></figure>
+    <figure class="rimg reveal"><img style="background:#0b1018 url(data:image/webp;base64,UklGRmwAAABXRUJQVlA4IGAAAADQAwCdASoYAAgAPu1mq04ppaQiMAgBMB2JZwDImCHQTcKp2H2GMeAA/svQ0jB34B2jj1zXz3/NAeJhDXAZ4EmnuSmqU7/hOZO9PYPDgIKIv6DqjPG+jVIfgAb8AFjikAA=) center/cover no-repeat" width="1600" height="502" src="assets/img/ak-leverfix-1600.webp" srcset="assets/img/ak-leverfix-800.webp 800w, assets/img/ak-leverfix-1600.webp 1600w" sizes="(min-width: 900px) 80vw, 92vw" alt="拨杆修正前后" loading="lazy"></figure>
     <div class="reveal"><p class="eyebrow">Detail fix</p><p>倍镜小拨杆根部原来是一条长底板接上去，看起来是贴的；改成曲面底座，让拨杆像是从机件里长出来的。</p></div>
   </section>
 </article>
@@ -216,9 +221,9 @@
 <article class="project" id="studio">
   <section class="opener scene">
     <div class="stage">
-      <div class="frame"><img src="assets/img/studio-01-1600.webp"
+      <div class="frame"><img width="1600" height="900" src="assets/img/studio-01-1600.webp"
         srcset="assets/img/studio-01-800.webp 800w, assets/img/studio-01-1600.webp 1600w, assets/img/studio-01-2400.webp 2400w"
-        sizes="100vw" alt="幻想风角色设计工作室" loading="lazy" style="object-position:58% 50%"></div>
+        sizes="100vw" alt="幻想风角色设计工作室" loading="lazy" style="background:#0b1018 url(data:image/webp;base64,UklGRqQAAABXRUJQVlA4IJgAAAAQBACdASoYAA4APu1iqU2ppaOiMAgBMB2JZACdABbQ+32ee24rKGc24ADs/uoQY+jjXCD/iUmsQLOUDbx9NpGk0zRVLof5NxelOn12MHivIQVLX8C3ejXAX1BvMPI/8quOstVvd2Cg7M8XQU1DBCIsJm6Y43Ol2VX2hoeL/dFns95i32YZyj2/c51xSV8n1AwAENlQjE+AAA==) center/cover no-repeat;object-position:58% 50%"></div>
       <div class="shade"></div>
       <div class="num">03</div>
       <div class="title"><h2>FANTASY<br>CHARACTER STUDIO</h2><p>幻想风角色设计工作室 · 私单（个人接单）· 2026.10</p></div>
@@ -234,9 +239,9 @@
     <div class="stage">
       <div class="head"><p class="eyebrow">Details · 细节</p><h3>七个正式机位共用一个场景</h3></div>
       <div class="track">
-        <figure><img src="assets/img/studio-02-1600.webp" srcset="assets/img/studio-02-800.webp 800w, assets/img/studio-02-1600.webp 1600w" sizes="(min-width: 900px) 62vw, 84vw" alt="完整布局" loading="lazy"><figcaption><b>02</b>完整布局与家具</figcaption></figure>
-        <figure><img src="assets/img/studio-04-1600.webp" srcset="assets/img/studio-04-800.webp 800w, assets/img/studio-04-1600.webp 1600w" sizes="(min-width: 900px) 62vw, 84vw" alt="头架与缝纫区" loading="lazy"><figcaption><b>04</b>头架与缝纫区</figcaption></figure>
-        <figure><img src="assets/img/studio-07-1600.webp" srcset="assets/img/studio-07-800.webp 800w, assets/img/studio-07-1600.webp 1600w" sizes="(min-width: 900px) 62vw, 84vw" alt="水晶吊灯近景" loading="lazy"><figcaption><b>07</b>水晶吊灯近景</figcaption></figure>
+        <figure><img style="background:#0b1018 url(data:image/webp;base64,UklGRrgAAABXRUJQVlA4IKwAAAAwBACdASoYAA4APu1iqU2ppaOiMAgBMB2JQBYeVgHYAGbldlSJqtOGzggA/rxkkq+mzsm6O/UfEiwhyOYs3vHtHo2yHH16WBl7EIQCa3hx0KNimjBghEpgkit+a7O5s16Zi0LsoOeMR+69bnguTS7pNLGk9wt7eCuanSb3XAKwTALAmyrzJJTiUpGg7BRygulV0HjTUvE1eFf/4zLL5fT+e3NqKamBve+ygAAA) center/cover no-repeat" width="1600" height="900" src="assets/img/studio-02-1600.webp" srcset="assets/img/studio-02-800.webp 800w, assets/img/studio-02-1600.webp 1600w" sizes="(min-width: 900px) 62vw, 84vw" alt="完整布局" loading="lazy"><figcaption><b>02</b>完整布局与家具</figcaption></figure>
+        <figure><img style="background:#0b1018 url(data:image/webp;base64,UklGRqoAAABXRUJQVlA4IJ4AAAAQBACdASoYAA4APu1iqU2ppaOiMAgBMB2JQBOgAxuo0oibmqiUNGFrWAD+41vSjr45AxRhrqWbkyy/9EDpyPvQrf/DGRk5cavafIi6SSTpjjnJs5CD5hWnrFNT8zhpHLJZUmh0RdNyStf81NtZFx6OALr3QU8Zu5SGAmgDzQ7oip5kXR3+it3GVvKqHKZY6tbcmsoI2zMfy9VB/GAAAA==) center/cover no-repeat" width="1600" height="900" src="assets/img/studio-04-1600.webp" srcset="assets/img/studio-04-800.webp 800w, assets/img/studio-04-1600.webp 1600w" sizes="(min-width: 900px) 62vw, 84vw" alt="头架与缝纫区" loading="lazy"><figcaption><b>04</b>头架与缝纫区</figcaption></figure>
+        <figure><img style="background:#0b1018 url(data:image/webp;base64,UklGRqIAAABXRUJQVlA4IJYAAACwAwCdASoYAA4APu1kqU4ppaOiMAgBMB2JQBOgAloI2uzEmJ6iVgD90kAgCThByAb1DATy1F2uwMLz5cdZy2ZJEx0p40pIBEjlMKl5GFUrXnkiEEP4+jA+lDPXc+Mz7RL0PcNaIb6ABFe2xQLO5AqPAsnI9OFpehF39VOIEdKMOxAPuhGVBmEQcBJKk7/Ulw4AXWyzAAA=) center/cover no-repeat" width="1600" height="900" src="assets/img/studio-07-1600.webp" srcset="assets/img/studio-07-800.webp 800w, assets/img/studio-07-1600.webp 1600w" sizes="(min-width: 900px) 62vw, 84vw" alt="水晶吊灯近景" loading="lazy"><figcaption><b>07</b>水晶吊灯近景</figcaption></figure>
       </div>
     </div>
   </section>
@@ -245,10 +250,10 @@
     <div class="stage">
       <div class="head"><p class="eyebrow">Blockout → Final · 白模到定稿</p></div>
       <div class="frames">
-        <img class="frame" src="assets/img/studio-step1-1600.webp" srcset="assets/img/studio-step1-800.webp 800w, assets/img/studio-step1-1600.webp 1600w" sizes="(min-width: 900px) 70vw, 92vw" alt="白模" loading="lazy">
-        <img class="frame" src="assets/img/studio-step2-1600.webp" srcset="assets/img/studio-step2-800.webp 800w, assets/img/studio-step2-1600.webp 1600w" sizes="(min-width: 900px) 70vw, 92vw" alt="家具布局" loading="lazy">
-        <img class="frame" src="assets/img/studio-step3-1600.webp" srcset="assets/img/studio-step3-800.webp 800w, assets/img/studio-step3-1600.webp 1600w" sizes="(min-width: 900px) 70vw, 92vw" alt="材质" loading="lazy">
-        <img class="frame" src="assets/img/studio-step4-1600.webp" srcset="assets/img/studio-step4-800.webp 800w, assets/img/studio-step4-1600.webp 1600w" sizes="(min-width: 900px) 70vw, 92vw" alt="定稿" loading="lazy">
+        <img style="background:#0b1018 url(data:image/webp;base64,UklGRlYAAABXRUJQVlA4IEoAAABwAwCdASoYAA4APu1qrU8ppiQiMAgBMB2JaQAARzoAHLCKuIAA/sOJf2G36FkJuFnN1pZLvWR82O1NkYMGfNQNK7EDhT/4J6H+AA==) center/cover no-repeat" width="1600" height="900" class="frame" src="assets/img/studio-step1-1600.webp" srcset="assets/img/studio-step1-800.webp 800w, assets/img/studio-step1-1600.webp 1600w" sizes="(min-width: 900px) 70vw, 92vw" alt="白模" loading="lazy">
+        <img style="background:#0b1018 url(data:image/webp;base64,UklGRloAAABXRUJQVlA4IE4AAACQAwCdASoYAA0APu1Ct1apoqakGAEwHYlpAABc3WlsAPmg9toAAP3L/51g71N4X5jc2xdACXMGPUquBQphePRLszy7YfkXjSaXwOgQAAA=) center/cover no-repeat" width="1600" height="886" class="frame" src="assets/img/studio-step2-1600.webp" srcset="assets/img/studio-step2-800.webp 800w, assets/img/studio-step2-1600.webp 1600w" sizes="(min-width: 900px) 70vw, 92vw" alt="家具布局" loading="lazy">
+        <img style="background:#0b1018 url(data:image/webp;base64,UklGRnoAAABXRUJQVlA4IG4AAABwAwCdASoYAA0APu1krU6ppaSiMAgBMB2JZwABHqirpW13HmAA/sM7g+3r+w/8RkOcVgFXB0ivHirB66LWqpyrCCn9cUKYpdVIKCHozAZj9f1byvtZ2sgDOV/VW0j+9v48DX3LBsVBaZGGeIFAAA==) center/cover no-repeat" width="1600" height="886" class="frame" src="assets/img/studio-step3-1600.webp" srcset="assets/img/studio-step3-800.webp 800w, assets/img/studio-step3-1600.webp 1600w" sizes="(min-width: 900px) 70vw, 92vw" alt="材质" loading="lazy">
+        <img style="background:#0b1018 url(data:image/webp;base64,UklGRqQAAABXRUJQVlA4IJgAAABQBACdASoYAA4APu1iqU2ppaQiMAgBMB2JZACdAYwck0Xf/c5F9PYtg1kAAOz+6ezQFX9OQdS4tJ9T748e5DxMkK+dQiCjipA/TzH3rnpGVnEi0I+7vRrgL6g3mHke5CywlBPl/T+XZnl6vUoAnDMzeQWTurCrGsbXuqHewLXcPWXLPAf3bPvduf8xqKWd8sTYWRyoRifAAA==) center/cover no-repeat" width="1600" height="900" class="frame" src="assets/img/studio-step4-1600.webp" srcset="assets/img/studio-step4-800.webp 800w, assets/img/studio-step4-1600.webp 1600w" sizes="(min-width: 900px) 70vw, 92vw" alt="定稿" loading="lazy">
       </div>
       <ol class="captions">
         <li><b>01 · 10.18</b><h3>白模与比例</h3><p>先用白模把空间比例和机位定下来。</p></li>
@@ -277,9 +282,10 @@
   <section class="opener scene">
     <div class="stage">
       <div class="frame is-video">
-        <video class="bgv" muted loop playsinline preload="none" poster="assets/video/sprite-poster.webp" data-src="assets/video/sprite" aria-label="聚光灯精灵展示短片"></video>
+        <video style="background:#0b1018 url(data:image/webp;base64,UklGRkIAAABXRUJQVlA4IDYAAAAwAwCdASoYAA4APu1iqU2ppaQiMAgBMB2JaQAAetChog8AAP7wt0i2AmHU79MbDxngLzeMAAA=) center/cover no-repeat" width="1920" height="1080" class="bgv" muted loop playsinline preload="none" poster="assets/video/sprite-poster.webp" data-src="assets/video/sprite" aria-label="聚光灯精灵展示短片"></video>
+        <button class="glass loading" type="button" disabled aria-live="polite"><i aria-hidden="true"></i><span>视频加载中，请稍等</span></button>
       </div>
-      <button class="glass snd" type="button">开声音</button>
+      <div class="vctl"><span class="preview-note">10 秒预览</span><button class="glass full" type="button">看完整版</button><button class="glass snd" type="button">开声音</button></div>
       <div class="shade"></div>
       <div class="num">04</div>
       <div class="title"><h2>SPOTLIGHT<br>SPRITE</h2><p>聚光灯精灵 · 原创吉祥物 IP · 2026.10</p></div>
@@ -292,27 +298,27 @@
   </section>
 
   <section class="block two wrap">
-    <figure class="rimg reveal"><img src="assets/img/ip-projection-1600.webp" srcset="assets/img/ip-projection-800.webp 800w, assets/img/ip-projection-1600.webp 1600w" sizes="(min-width: 900px) 50vw, 92vw" alt="聚光灯精灵投出名字" loading="lazy"></figure>
+    <figure class="rimg reveal"><img style="background:#0b1018 url(data:image/webp;base64,UklGRmIAAABXRUJQVlA4IFYAAACwAwCdASoYAA4APu1iqk2ppaQiMAgBMB2JZwAASfpWTb7tw29eAAD+7QjTi6G2Mjq3nRKBJnB0+dq0/iLXX7vzDySrTulFOjpbVQovjb9Je/2eiwAAAA==) center/cover no-repeat" width="1600" height="900" src="assets/img/ip-projection-1600.webp" srcset="assets/img/ip-projection-800.webp 800w, assets/img/ip-projection-1600.webp 1600w" sizes="(min-width: 900px) 50vw, 92vw" alt="聚光灯精灵投出名字" loading="lazy"></figure>
     <div class="reveal" style="--d:.1s"><p class="eyebrow">Concept</p><h3>舞台聚光灯拟人</h3><p>挡光板当耳朵，点阵屏当眼睛。灯头由 U 形支架夹住，两侧旋钮是俯仰轴，肩上的安装座负责左右回转——没有脖子，每个部件都有能成立的机械关系。</p></div>
   </section>
 
   <section class="block wrap">
     <div class="reveal"><p class="eyebrow">Expressions · 8 种表情</p><h3>一个属性切换全部表情</h3><p>点阵眼睛由“表情”属性切换，做动画时直接打关键帧；上、左、右三片挡光板配合开合。</p></div>
     <div class="faces">
-      <figure class="reveal"><img src="assets/img/ip-face-1-400.webp" alt="平静" loading="lazy"><figcaption class="glass">平静</figcaption></figure>
-      <figure class="reveal" style="--d:.05s"><img src="assets/img/ip-face-2-400.webp" alt="开心" loading="lazy"><figcaption class="glass">开心</figcaption></figure>
-      <figure class="reveal" style="--d:.1s"><img src="assets/img/ip-face-3-400.webp" alt="惊讶" loading="lazy"><figcaption class="glass">惊讶</figcaption></figure>
-      <figure class="reveal" style="--d:.15s"><img src="assets/img/ip-face-4-400.webp" alt="困" loading="lazy"><figcaption class="glass">困</figcaption></figure>
-      <figure class="reveal"><img src="assets/img/ip-face-5-400.webp" alt="生气" loading="lazy"><figcaption class="glass">生气</figcaption></figure>
-      <figure class="reveal" style="--d:.05s"><img src="assets/img/ip-face-6-400.webp" alt="难过" loading="lazy"><figcaption class="glass">难过</figcaption></figure>
-      <figure class="reveal" style="--d:.1s"><img src="assets/img/ip-face-7-400.webp" alt="眨眼" loading="lazy"><figcaption class="glass">眨眼</figcaption></figure>
-      <figure class="reveal" style="--d:.15s"><img src="assets/img/ip-face-8-400.webp" alt="过载" loading="lazy"><figcaption class="glass">过载</figcaption></figure>
+      <figure class="reveal"><img style="background:#0b1018 url(data:image/webp;base64,UklGRuwAAABXRUJQVlA4IOAAAADQBQCdASoYABYAPu1ur1IppiQiqAgBMB2JZwDIXYx2bzhduQHF8Q/xHg6sZMupzITaeJI30mTwAP70KzPJjTAo6USFe22rVDf2I6enwwnoP0qkbsk3mGd7cxQ5jTM+w3sO5qg1CH/pedbpsa4+TL+HKmbOkElkGxFpNss8J0QB+WghY63iX//4KW9eyaA3J/EILgReAOK/jmT5oWE6jJAyyGgLhGwd7G5+n9U4I71nuLp7gfmRNvScyQ0L9TSjxWS085ASZx2C6W+b50uniXbbfmK4GsomWbPpkeoDSUAAAA==) center/cover no-repeat" width="400" height="375" src="assets/img/ip-face-1-400.webp" alt="平静" loading="lazy"><figcaption class="glass">平静</figcaption></figure>
+      <figure class="reveal" style="--d:.05s"><img style="background:#0b1018 url(data:image/webp;base64,UklGRuQAAABXRUJQVlA4INgAAADQBQCdASoYABYAPu1ur1IppiQiqAgBMB2JZwDNiPJ1gHuNIOofxrOOiMXl/9Q4iTjqBNFhpAGkAP70KziSaD0wx4bUIzLSl4I7fgo/CVHCCHGVAL/Yk4/ZsTgzBqPQ3188q7UD05zL+Ge+6MyGeco1ZCy5yrEUzYTBNREF175+MDaqipseA1ew3kHRJy/nQpO7nFpidC7S+3Yuqhj0EvnnCzHTgO66+9tAGLemBUNr+4MpIPXAfrkvryFDX61EENCoM2XP9PNcbLp+hAPlJteBQi+cHgAAAAA=) center/cover no-repeat" width="400" height="375" src="assets/img/ip-face-2-400.webp" alt="开心" loading="lazy"><figcaption class="glass">开心</figcaption></figure>
+      <figure class="reveal" style="--d:.1s"><img style="background:#0b1018 url(data:image/webp;base64,UklGRvIAAABXRUJQVlA4IOYAAADwBQCdASoYABYAPu1ur1IppiQiqAgBMB2JZwDL5rJ8H0z9TdsxLR3Gn/ofRTuLZU7rIIYVXhpwAAD+9Cs4iRJ/eArySOU1MgjLr9dPle7+SaNXTvYX57EeILbHWHLXl57QsCT4d0eSPywOXkjtJTr8d4eNUuZ2uf1Qu8+DiRid3puydHDMoYcO2f/84gf/LTqUJZ44giPLx7XvVJupmOKIt+Y0FPYplpi46oi3Hs7W3zpTCnxUVobAYrE+cXElgdJB65aEgUqJkjJq9dGsmJaU/6bfOkqOqV32N0Faegkf8l8WcgAAAA==) center/cover no-repeat" width="400" height="375" src="assets/img/ip-face-3-400.webp" alt="惊讶" loading="lazy"><figcaption class="glass">惊讶</figcaption></figure>
+      <figure class="reveal" style="--d:.15s"><img style="background:#0b1018 url(data:image/webp;base64,UklGRtIAAABXRUJQVlA4IMYAAADQBQCdASoYABYAPu1kq06ppaQiKA1RMB2JZwDOdywTnQX79gY1rlwv9I3NjlpKZjRsavEyBYmQAP70JSKiqdA6Mo41qlf8NiWOqx7KDULpy/+nRiSLm2TEYvpJ1xTxltdx5wSMx7QKRUOKwlaPdtNY4/eh37dJ8H1RX8qCo2jRiQUBpmSIVa8ToxQUWG+A950JfgbaGUi0ejk/xoLJQW7cLBUFun6P8WkxFiOmsBJNC/5QtP+bPk4eUQ2UIden6033WCRwAAA=) center/cover no-repeat" width="400" height="375" src="assets/img/ip-face-4-400.webp" alt="困" loading="lazy"><figcaption class="glass">困</figcaption></figure>
+      <figure class="reveal"><img style="background:#0b1018 url(data:image/webp;base64,UklGRtYAAABXRUJQVlA4IMoAAACQBQCdASoYABYAPu1qqVAppiOiqA1RMB2JZwDLaYwwblZUyVBrFV8fAANBI3MHcvjbq3ufoAD+9CUtGjcWJdqIkOdmpX1pM0cTa8ngJAb3+jb57nVVUU0Bg90y+g0GF8Ick55uzDiEjYLuynjyCI7382oc5G2zuJJ8PQ/9MFHfTQxegU1guh35ndk6FN4lT/aQWbfm/IF4lidmzKsKyxXrgfCxUJwTlDPKXSqmuhQRHKIx3ejgrcKtE0cWN09hoUTgWPYa+DWHhQAA) center/cover no-repeat" width="400" height="375" src="assets/img/ip-face-5-400.webp" alt="生气" loading="lazy"><figcaption class="glass">生气</figcaption></figure>
+      <figure class="reveal" style="--d:.05s"><img style="background:#0b1018 url(data:image/webp;base64,UklGRtgAAABXRUJQVlA4IMwAAAAwBQCdASoYABYAPu1qq1EppaOiqAqpMB2JZwDM0YvqcIBy4nCCq07licDVTKDDtEiCIAD+9CUiopaWw1ExUhGI1eUWCu0ofbzF/+2FH/GaxHuh5NtMUyJRL39fmUfdPdLCtYjVrJ8h4Fm9+uxC9Y7PwyRvjJdqmndPus3ygeXZD/45tc2EIhnPmohQsJlhCDr7M2bh2Yi32vJEMupfTCgZGICoJoljOo2B2fl/9yVddnanDSC7z/B6ts39z9A/SOor7a/HG8/XHYWgAAA=) center/cover no-repeat" width="400" height="375" src="assets/img/ip-face-6-400.webp" alt="难过" loading="lazy"><figcaption class="glass">难过</figcaption></figure>
+      <figure class="reveal" style="--d:.1s"><img style="background:#0b1018 url(data:image/webp;base64,UklGRuQAAABXRUJQVlA4INgAAADwBQCdASoYABYAPu1urlIppiQiqAgBMB2JZwDIXywTmoXqHY+NEL5wAoUelO/B2PWk2JqWNxecgAD+9Cs43iMRUj9BOHU5SclhxFQFyZxVuvY7DkBOglqKGeQ05Y6vLTvgpeTjNuoqcvPozczTgCx0rULA/BebrDsv659X486B+8V3Afocx76xfwkboSnrLbe7ZHcIPrfUbCnyz+/rK36ZBLa0sk3t8u9ZBs9aKc9xboCMvF52N0w4x5wVV+gq9xPm998w3lBWIbPe6yyT55wIm5RzhUVAAAA=) center/cover no-repeat" width="400" height="375" src="assets/img/ip-face-7-400.webp" alt="眨眼" loading="lazy"><figcaption class="glass">眨眼</figcaption></figure>
+      <figure class="reveal" style="--d:.15s"><img style="background:#0b1018 url(data:image/webp;base64,UklGRuoAAABXRUJQVlA4IN4AAACwBQCdASoYABYAPu1ur1IppiQiqAgBMB2JZwDL5rSLQ7N1BWulZv2DP8Ab/z7Gh6rWWw378AAA/vQrONdWzOO5NTzlOqPcu80unTF2AAiW7aBCufzgLo5PtH8IVQUuIjnpxeE8B0PQXRV/4f1e4EiKp9efamoBr01fubi04l7GA+zHpF+f5CKv5Rsp2BVpbfO6cqvG1ecCJ45ApQDV7Ph0wxeFwvCYntLqQIfhDHEcQIdSo7FYhbvA0kebo1iui08mGyr85Jd8zubcHhN38nWCahmLL30Q6Bpw9nzwAAA=) center/cover no-repeat" width="400" height="375" src="assets/img/ip-face-8-400.webp" alt="过载" loading="lazy"><figcaption class="glass">过载</figcaption></figure>
     </div>
   </section>
 
   <section class="block two wrap">
     <div class="rig reveal">
-      <img src="assets/img/ip-rig-body-1000.webp" srcset="assets/img/ip-rig-body-600.webp 600w, assets/img/ip-rig-body-1000.webp 1000w" sizes="(min-width: 900px) 420px, 80vw" alt="白模" loading="lazy">
+      <img style="background:#0b1018 url(data:image/webp;base64,UklGRrIAAABXRUJQVlA4IKYAAABQBQCdASoYACIAPu1kqU6ppaOiKqwBMB2JaQDJiBQ4OJYRrzrN5fm8B0HyoMoxmH3uwQAA2XzKRFUF3EozVkoHpDNZK+ZNBHxAdG514Vgu+6WDVoc84OTWfzHoKXv2/JY2Az1p1QZ89yQw6qq0tQH1pNsBoHY+9ysxtwUK3ioqxcalyVZALfk58sxF7QtxgLs10ffiRbhwERQVmsOm+kPuRKJjQAAA) center/cover no-repeat" width="1000" height="1435" src="assets/img/ip-rig-body-1000.webp" srcset="assets/img/ip-rig-body-600.webp 600w, assets/img/ip-rig-body-1000.webp 1000w" sizes="(min-width: 900px) 420px, 80vw" alt="白模" loading="lazy">
       <img class="bones" src="assets/img/ip-rig-bones-1000.webp" srcset="assets/img/ip-rig-bones-600.webp 600w, assets/img/ip-rig-bones-1000.webp 1000w" sizes="(min-width: 900px) 420px, 80vw" alt="骨骼" loading="lazy">
       <span class="glass tag">RIG · 39 BONES</span>
     </div>
@@ -327,12 +333,12 @@
   </section>
 
   <section class="block two wrap">
-    <figure class="rimg reveal"><img src="assets/img/ip-explode-1200.webp" srcset="assets/img/ip-explode-700.webp 700w, assets/img/ip-explode-1200.webp 1200w" sizes="(min-width: 900px) 40vw, 80vw" alt="结构拆解" loading="lazy"></figure>
+    <figure class="rimg reveal"><img style="background:#0b1018 url(data:image/webp;base64,UklGRvAAAABXRUJQVlA4IOQAAADQBQCdASoYACAAPu1sq08ppiOiMBgIATAdiWcACBAuhis2+pbNaWHHk88NuhlElV5ut4LcKLGUAP72iLYlOIdWn/BJ523hvXGm5n2joSeTSz5lS6BjPCMqYiAsSAa3QHrHJR7QlPW/lmv8yV8I/f6xTYshIO42V0GjN7lC7YZP98s+2yPqug9swQVA2xKQu6ApSr9GrWksC2Z0OCP+05d7FVhN7RSgKtpr6piGnMXlpkN6WiZUkgXEmY4aUps+GAonWS91eOrWmRCyc5c7ZE1p8g4pVMO3w/SPxNejljfw7vFAAAA=) center/cover no-repeat" width="1200" height="1586" src="assets/img/ip-explode-1200.webp" srcset="assets/img/ip-explode-700.webp 700w, assets/img/ip-explode-1200.webp 1200w" sizes="(min-width: 900px) 40vw, 80vw" alt="结构拆解" loading="lazy"></figure>
     <div>
       <div class="reveal"><p class="eyebrow">Turntable · 拖动对比</p><h3>成品、白模、线框</h3><p>近 150 个独立零件。同一圈转台渲三层，用来检查形体和布线。</p></div>
       <div class="compare reveal portrait" style="--ar:1100/1578">
-        <img class="bot" src="assets/img/ip-turn-wire-1000.webp" srcset="assets/img/ip-turn-wire-600.webp 600w, assets/img/ip-turn-wire-1000.webp 1000w" sizes="(min-width: 900px) 360px, 70vw" alt="线框" loading="lazy">
-        <img class="top" src="assets/img/ip-turn-color-1000.webp" srcset="assets/img/ip-turn-color-600.webp 600w, assets/img/ip-turn-color-1000.webp 1000w" sizes="(min-width: 900px) 360px, 70vw" alt="成品" loading="lazy">
+        <img style="background:#0b1018 url(data:image/webp;base64,UklGRroAAABXRUJQVlA4IK4AAACwBQCdASoYACIAPu1iq04ppaQiKqwBMB2JaQAIEC6HUomd6RC2Hoba2H0xHag1F20CtFgUxwAA/vQrIFX8K+yJD6BKnvtu6wilssQjcsDTW+YP5sFeHiMA0wDlDIvGeVhlL5ospvfxtoI9TB1veSxYdD0cITOMWwMHLG93WLqHwRugKjqQvbqmnikaN0ZNgozCFD1SvQ97af6UhST1iooU9qlOKST0nISt6pIQAAA=) center/cover no-repeat" width="1000" height="1435" class="bot" src="assets/img/ip-turn-wire-1000.webp" srcset="assets/img/ip-turn-wire-600.webp 600w, assets/img/ip-turn-wire-1000.webp 1000w" sizes="(min-width: 900px) 360px, 70vw" alt="线框" loading="lazy">
+        <img style="background:#0b1018 url(data:image/webp;base64,UklGRvwAAABXRUJQVlA4IPAAAAAQBgCdASoYACIAPu1qrVCppaQiqqgBMB2JZwDN/ywTnofFNlgKCDDf2MdLJJggaSJ51FVx87Omx0AA/vQlNFuyQl5VpSp0BiOnhcZiDIyra67vD796njKWEuN2F/Z59DFylXqQw+eHO4xESMWvxdQ6infA21OdesvYsN36Ix/VTxowTAcDKWio9Vdb7AIbw+jSFeNjvr2a53MuhjFLTe+eWPYTG3UCLk5mtcgdZkWM2EKTkPFJ+4+gOMSQk4UaBAVyaesNgJpcxMOB2AxZ/mFuJNhuOYRnq1/nbDwd/mHbTm6cD0tJeo5sefCC65QAAAA=) center/cover no-repeat" width="1000" height="1435" class="top" src="assets/img/ip-turn-color-1000.webp" srcset="assets/img/ip-turn-color-600.webp 600w, assets/img/ip-turn-color-1000.webp 1000w" sizes="(min-width: 900px) 360px, 70vw" alt="成品" loading="lazy">
         <i class="bar"></i><span class="glass knob">‹ ›</span>
         <span class="glass lab l">RENDER</span><span class="glass lab r">WIRE</span>
       </div>
@@ -349,7 +355,8 @@
   <section class="opener scene">
     <div class="stage">
       <div class="frame is-video">
-        <video class="bgv" muted loop playsinline preload="none" poster="assets/video/office-poster.webp" data-src="assets/video/office" aria-label="夜间办公室运镜动画"></video>
+        <video style="background:#0b1018 url(data:image/webp;base64,UklGRmYAAABXRUJQVlA4IFoAAABQAwCdASoYAA4APu1iqk2ppaQiMAgBMB2JaQAAetETwKyBgAD+8Fw4frMV7ZDBqWKmmz+G14uerycKrvDATkVhS0unbLxEyjHJI8+B7Q03m4UBTQtZJyAAAAA=) center/cover no-repeat" width="1920" height="1080" class="bgv" muted loop playsinline preload="none" poster="assets/video/office-poster.webp" data-src="assets/video/office" aria-label="夜间办公室运镜动画"></video>
+        <button class="glass loading" type="button" disabled aria-live="polite"><i aria-hidden="true"></i><span>视频加载中，请稍等</span></button>
       </div>
       <div class="shade"></div>
       <div class="num">05</div>
@@ -362,19 +369,19 @@
     </div>
   </section>
   <section class="block wrap pair">
-    <figure class="rimg reveal"><img src="assets/img/office-02-1400.webp" srcset="assets/img/office-02-800.webp 800w, assets/img/office-02-1400.webp 1400w" sizes="(min-width: 900px) 45vw, 92vw" alt="桌面细节" loading="lazy"></figure>
-    <figure class="rimg reveal" style="--d:.1s"><img src="assets/img/office-03-1400.webp" srcset="assets/img/office-03-800.webp 800w, assets/img/office-03-1400.webp 1400w" sizes="(min-width: 900px) 45vw, 92vw" alt="窗边纵深" loading="lazy"></figure>
+    <figure class="rimg reveal"><img style="background:#0b1018 url(data:image/webp;base64,UklGRpIAAABXRUJQVlA4IIYAAAAwBACdASoYAA4APu1iqU2ppaQiMAgBMB2JZwAAUpO/hx7X3Ywhx0gYNcAA/vQypwZKynojQFQzNET54/psJn//Fvl96cNJFYDaP/x1S7Pw0D7+yhQ5Ra3QVI2K071Xzn31/AlasNLmLZxhQA9Y5VUDN1SdD7aXDvEo7WjnwM+lBWxTEwJgAA==) center/cover no-repeat" width="1400" height="788" src="assets/img/office-02-1400.webp" srcset="assets/img/office-02-800.webp 800w, assets/img/office-02-1400.webp 1400w" sizes="(min-width: 900px) 45vw, 92vw" alt="桌面细节" loading="lazy"></figure>
+    <figure class="rimg reveal" style="--d:.1s"><img style="background:#0b1018 url(data:image/webp;base64,UklGRn4AAABXRUJQVlA4IHIAAADQAwCdASoYAA4APu1kqU2ppaQiMAgBMB2JZwAAQu6SiUQmCqZMcQAA/vK0NRhBsQojuZkX5TcYxY6gozLN4r1xrsbP0zelQaguA9mNlqRmaVDxCJv7Zk/bkgVmF5VYXmVVY75oFyWdROzaJ2KSV0cAAAA=) center/cover no-repeat" width="1400" height="788" src="assets/img/office-03-1400.webp" srcset="assets/img/office-03-800.webp 800w, assets/img/office-03-1400.webp 1400w" sizes="(min-width: 900px) 45vw, 92vw" alt="窗边纵深" loading="lazy"></figure>
   </section>
 </article>
 
 <!-- 联系 -->
 <section class="contact" id="contact">
-  <img class="bgimg" src="assets/img/nereid-07-1600.webp" alt="" loading="lazy">
+  <img style="background:#0b1018 url(data:image/webp;base64,UklGRpQAAABXRUJQVlA4IIgAAABQBACdASoYABIAPu1qrlCppaQiqAqpMB2JZgCdMoABXMucSscHHc8Zm1QAAP7lr4Ru4cUdXJ1hQJeN0KyK518Lw4gaX7PCjsLCIAdGknZ2324jewX0kEP6yLLwePrIdJ8mN/Sk/qZkU2i+Szk6XUyI6mZcKKFDIFapERaR+aq9FmuizWTMwAAA) center/cover no-repeat" width="1600" height="1231" class="bgimg" src="assets/img/nereid-07-1600.webp" alt="" loading="lazy">
   <div class="shade"></div>
   <h2 class="thanks reveal">THANK<br>YOU</h2>
   <p class="who reveal">李铿 <em>KENNY</em> · 3D 美术 · 场景／道具方向</p>
   <div class="cards">
-    <div class="glass qrcard reveal"><img src="assets/img/wechat-qr.png" alt="微信二维码" loading="lazy"><span>扫码／长按识别加微信</span></div>
+    <div class="glass qrcard reveal"><img style="background:#0b1018 url(data:image/webp;base64,UklGRtwAAABXRUJQVlA4INAAAABQBQCdASoYABgAPu1oqVAppaOiqA1RMB2JQAHPluAt/A4W/dfF/GrWW8UwXWjU1DiZQAAA/u46FBY8gduNR4H4ikpDLyl+2j6exFoy8JLToEAkLhO6HL692cMXYSAPEOf4T4f58M19I2llkX8LjiYkaW0f/yacY6lkXOV1Pu9P8ndqRcy9HMwd8XgxkhqSJmjgEZm8rE9J1acWRSzLOklfCM6VB1PniowMfZuzQcEiXeLqr5pSWWyrS635+Z00ls4/0Rj/LS9f6f0mbcDBlngA) center/cover no-repeat" width="728" height="721" src="assets/img/wechat-qr.png" alt="微信二维码" loading="lazy"><span>扫码／长按识别加微信</span></div>
     <div class="glass links reveal" style="--d:.1s">
       <a href="mailto:1819193862@qq.com"><span>EMAIL</span>1819193862@qq.com</a>
       <a href="assets/files/likeng-portfolio.pdf" download="李铿_作品集.pdf"><span>PDF</span>下载作品集（3 MB）</a>
@@ -387,7 +394,6 @@
 </main>
 <footer>李铿 KENNY — PORTFOLIO 2026</footer>
 
-<script src="assets/lib/lenis.min.js"></script>
-<script src="assets/main.js?v=20261031-5"></script>
+<script defer src="assets/main.js?v=20261031-loading-v2"></script>
 </body>
 </html>

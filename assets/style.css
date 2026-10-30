@@ -139,8 +139,33 @@ html.lenis, html.lenis body { height: auto; }
   width: 100%; height: 100%; object-fit: cover; background: #05080f;
   transform: scale(calc(1.18 - var(--p, 0) * .18)); will-change: transform;
 }
-/* 开篇视频的“开声音”按钮：放在所有图层最上面；横屏在右上（避开顶栏），竖屏贴在视频条右下 */
-.opener .snd { position: absolute; right: var(--pad); top: 76px; bottom: auto; z-index: 5; }
+/* 开篇视频的按钮组（看完整版／开声音）：放在所有图层最上面；电脑在右上（避开顶栏），手机贴在视频下方 */
+.opener .vctl { position: absolute; right: var(--pad); top: 76px; z-index: 5; display: flex; gap: 8px; }
+.vctl .snd { position: static; }
+.vctl button { padding: 8px 15px; border-radius: 99px; font-size: 13px; }
+.vctl .full { display: none; }   /* 电脑本来就播完整版 */
+.vctl .full[hidden] { display: none !important; }
+.preview-note { display: none; align-self: center; color: var(--ink2); font-size: 12px; }
+.vctl button:disabled { cursor: wait; opacity: .7; }
+.hero-picture { display: contents; }
+
+/* 视频加载中：开始下载后、能播放前显示 */
+.frame .loading {
+  position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); z-index: 2; pointer-events: none;
+  display: none; align-items: center; gap: 8px; padding: 8px 14px; border-radius: 99px; font-size: 12px; color: var(--ink2);
+}
+.frame[data-state="loading"] .loading,
+.frame[data-state="slow"] .loading,
+.frame[data-state="error"] .loading,
+.frame[data-state="blocked"] .loading { display: flex; }
+.frame .loading:enabled { pointer-events: auto; }
+.frame[data-state="error"] .loading i,
+.frame[data-state="blocked"] .loading i { display: none; }
+.opener .frame.is-video { z-index: 1; }
+.opener .shade { z-index: 2; pointer-events: none; }
+.opener .num, .opener .title, .opener .info { z-index: 3; }
+.loading i { width: 14px; height: 14px; border-radius: 50%; border: 2px solid rgba(255,255,255,.3); border-top-color: #fff; animation: spin .8s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
 .opener .shade {
   position: absolute; inset: 0;
   background: radial-gradient(ellipse 75% 60% at 0% 0%, rgba(3,8,20,.8), rgba(3,8,20,0) 70%),
@@ -332,12 +357,16 @@ footer { padding: 24px var(--pad) max(40px, env(safe-area-inset-bottom)); font: 
   .opener .frame img { height: auto; transform: none; object-fit: contain; }
   .opener .frame video { height: auto; aspect-ratio: 16 / 9; transform: none; object-fit: contain; }
   .opener .shade { display: none; }
-  .opener .snd { position: relative; top: auto; right: auto; order: 4; align-self: flex-end; margin-top: 10px; padding: 7px 14px; font-size: 12px; }
+  .opener .vctl { position: relative; top: auto; right: auto; order: 4; align-self: flex-end; margin-top: 10px; }
+  .vctl button { padding: 7px 14px; font-size: 12px; }
+  .vctl .full { display: inline-block; }
+  .preview-note { display: inline; }
   .opener .info { position: relative; left: auto; right: auto; bottom: auto; order: 5; margin-top: 14px; }
   .opener .num, .opener .title { --a: 1; }
   .opener .info { --b: 1; }
   .opener .rv { transition: opacity 1s var(--ease), transform 1s var(--ease); }
   .opener .rv:not(.in) { opacity: 0; transform: translate3d(0, 26px, 0); }
+  .opener .frame.rv:not(.in) { transform: none; }
 
   /* 细节画廊：手指左右滑，带吸附，图片按原比例 */
   .hgallery .stage { padding: 9vh 0 3vh; gap: 16px; }
@@ -363,6 +392,16 @@ footer { padding: 24px var(--pad) max(40px, env(safe-area-inset-bottom)); font: 
   .frames .frame { position: relative; inset: auto; flex: 0 0 86vw; width: 86vw; height: auto; border-radius: 14px; scroll-snap-align: start; opacity: 1 !important; transform: none !important; }
   .captions { min-height: 126px; }
   .captions li { left: var(--pad); right: var(--pad); }
+}
+
+/* 脚本尚未下载或加载失败时，文字与预览也应可见。 */
+html:not(.js) .reveal, html:not(.js) .rimg,
+html:not(.js) .rimg img, html:not(.js) .word span,
+html:not(.js) .opener .num, html:not(.js) .opener .title,
+html:not(.js) .opener .info { opacity: 1; transform: none; clip-path: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  .loading i { animation: none; }
 }
 
 /* ---------- 系统开了“减少动态效果”：关掉钉住和大动画 ---------- */

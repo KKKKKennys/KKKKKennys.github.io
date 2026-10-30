@@ -6,11 +6,15 @@
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
   const mql = matchMedia('(max-width: 899px)');
   const mobile = mql.matches;
+  root.classList.add('js');
   // 跨过手机／电脑分界（比如平板转屏）时整页重载，两套布局不混用
   if (mql.addEventListener) mql.addEventListener('change', () => location.reload());
 
   // 字体就绪后再播开场字母动画，避免先闪一下系统字体
-  (document.fonts ? document.fonts.ready : Promise.resolve()).then(() => root.classList.add('ready'));
+  // 网速慢时最多等 1.2 秒，字体还没到就先用系统字体显示，不让 KENNY 一直空着
+  const ready = () => root.classList.add('ready');
+  (document.fonts ? document.fonts.ready : Promise.resolve()).then(ready);
+  setTimeout(ready, 1200);
 
   // ---------- 进入视口时浮现 ----------
   const io = new IntersectionObserver((entries) => {
@@ -34,94 +38,151 @@
   }
   document.querySelectorAll('.reveal, .rimg, .rig, .rv').forEach((el) => io.observe(el));
 
-  // ---------- 开篇视频 ----------
-  // 按屏幕选 720p／1080p；电脑：滑到附近就加载、在画面里就播；手机：画面露出大半才播，省流量也更顺
-  const pickRes = () => (window.innerWidth >= 900 && window.innerWidth * (window.devicePixelRatio || 1) >= 1400 ? '1080' : '720');
-  const load = (v) => { if (!v.src) { v.src = v.dataset.src + '-' + pickRes() + '.mp4'; v.preload = 'auto'; } };
-  const videos = [...document.querySelectorAll('video.bgv')];
+  // ---------- 图片提前加载：离屏幕还有一屏半就开始下载，滑到时多半已经下好 ----------
+  const early = new IntersectionObserver((entries) => {
+    for (const e of entries) {
+      if (!e.isIntersecting) continue;
+      e.target.loading = 'eager';
+      early.unobserve(e.target);
+    }
+  }, { rootMargin: '150% 0px 150% 0px' });
+  document.querySelectorAll('img[loading="lazy"]').forEach((img) => early.observe(img));
 
-  // 声音：带“开声音”按钮的视频默认想要出声（soundOn）。
-  // 浏览器不允许未点击前自动出声时，先静音播放；用户在页面上第一次点击后自动打开声音。
-  // 点了“静音”就不再自动开。同一时间只让当前画面里的那段出声。
+  // ---------- 视频：轻量预览、加载反馈、显式完整版与可见性控制 ----------
+  const videos = [...document.querySelectorAll('video.bgv')];
   let soundOn = true;
   let current = null;
-  videos.forEach((v) => {
-    const btn = v.closest('.stage').querySelector('.snd');
-    if (btn) { v._btn = btn; btn._video = v; }
-  });
-  const label = (v) => { if (v._btn) v._btn.textContent = v.muted ? '开声音' : '静音'; };
-  function playVideo(v) {
-    load(v);
-    current = v;
-    if (v._btn && soundOn) {
-      videos.forEach((o) => { if (o !== v) { o.muted = true; label(o); } });
-      v.muted = false;
-      v.play().then(() => label(v)).catch(() => {
-        v.muted = true;
-        label(v);
-        v.play().catch(() => {});
-      });
-    } else {
-      v.muted = true;
-      label(v);
-      v.play().catch(() => {});
+  const visible = (v) => {
+    if (document.hidden) return false;
+    const r = v.getBoundingClientRect();
+    const w = Math.max(0, Math.min(r.right, innerWidth) - Math.max(r.left, 0));
+    const h = Math.max(0, Math.min(r.bottom, innerHeight) - Math.max(r.top, 0));
+    return r.width > 0 && r.height > 0 && w * h / (r.width * r.height) >= 0.5;
+  };
+  const label = (v) => {
+    if (!v._btn) return;
+    v._btn.textContent = v.muted ? '开声音' : '静音';
+    v._btn.setAttribute('aria-pressed', String(!v.muted));
+  };
+  const pickRes = (v) => mobile ? (v._full ? '720' : 'm480') :
+    (innerWidth * (devicePixelRatio || 1) >= 1400 ? '1080' : '720');
+  function status(v, state) {
+    clearTimeout(v._waitTimer);
+    v._frame.dataset.state = state;
+    v._frame.setAttribute('aria-busy', String(state === 'loading' || state === 'slow'));
+    v._status.disabled = state === 'loading';
+    v._status.querySelector('span').textContent = ({
+      loading: '视频加载中，请稍等', slow: '网络较慢，点此重试',
+      error: '视频加载失败，点此重试', blocked: '点此播放'
+    })[state] || '';
+    if (state === 'loading') v._waitTimer = setTimeout(() => status(v, 'slow'), 15000);
+    if (v._fullBtn && !v._fullBtn.hidden) {
+      v._fullBtn.disabled = state === 'loading' && !!v._full;
+      v._fullBtn.textContent = v._full ? (state === 'error' || state === 'slow' ? '重试完整版' : '完整版加载中…') : '看完整版';
     }
   }
+  function load(v, force = false) {
+    if (v.getAttribute('src') && !force) return;
+    stopVideo(v);
+    status(v, 'loading');
+    v.preload = 'auto';
+    v.src = v.dataset.src + '-' + pickRes(v) + '.mp4';
+    v.load();
+  }
   function stopVideo(v) {
+    v._request = (v._request || 0) + 1;
+    v._wantPlay = false;
     v.pause();
+    v.muted = true;
+    label(v);
     if (current === v) current = null;
   }
-  // 第一次点击／触摸后，把当前画面里的视频声音打开（必须在点击事件里同步调用才被允许）
-  const unlock = (ev) => {
-    if (ev.target && ev.target.closest && ev.target.closest('.snd')) return;  // 点的是按钮本身，交给按钮处理
-    const v = current;
-    if (!soundOn || !v || !v._btn || !v.muted || v.paused) return;
-    v.muted = false;
-    v.play().then(() => label(v)).catch(() => { v.muted = true; label(v); });
-  };
-  ['click', 'touchend', 'keydown'].forEach((t) => document.addEventListener(t, unlock, true));
-  // 微信内置浏览器：桥接就绪后可以尝试直接带声音播放
-  document.addEventListener('WeixinJSBridgeReady', () => { if (current) playVideo(current); });
-
-  // 离得近就提前加载；但只有视频本身一半以上在屏幕上才播放，少于一半立刻暂停（避免滑走后还在后台出声）
+  function playVideo(v) {
+    if (!visible(v)) return;
+    load(v);
+    videos.forEach((other) => { if (other !== v && (other._wantPlay || !other.paused)) stopVideo(other); });
+    current = v;
+    v._wantPlay = true;
+    const request = ++v._request;
+    const active = () => request === v._request && current === v && v._wantPlay && visible(v);
+    v.muted = !(v._btn && soundOn);
+    label(v);
+    if (v.readyState < 3) status(v, 'loading');
+    v.play().then(() => {
+      if (!active()) { if (request === v._request) stopVideo(v); return; }
+      label(v);
+    }).catch((error) => {
+      if (!active() || error.name === 'AbortError') return;
+      if (error.name !== 'NotAllowedError') { status(v, 'error'); return; }
+      v.muted = true;
+      label(v);
+      v.play().catch((fallbackError) => {
+        if (active() && fallbackError.name !== 'AbortError') {
+          status(v, v.error || fallbackError.name !== 'NotAllowedError' ? 'error' : 'blocked');
+        }
+      });
+    });
+  }
+  videos.forEach((v) => {
+    const stage = v.closest('.stage');
+    v._frame = v.closest('.frame');
+    v._status = v._frame.querySelector('.loading');
+    v._btn = stage.querySelector('.snd');
+    v._fullBtn = stage.querySelector('.full');
+    v._request = 0;
+    // 给视频容器也保留内嵌预览，即使浏览器尚未绘制 poster 也有画面。
+    v._frame.style.background = v.style.background;
+    label(v);
+    v.addEventListener('loadeddata', () => { if (v.readyState >= 2) status(v, 'ready'); });
+    v.addEventListener('canplay', () => status(v, 'ready'));
+    v.addEventListener('playing', () => {
+      if (current !== v || !v._wantPlay || !visible(v)) { stopVideo(v); return; }
+      status(v, 'ready');
+      if (v._full && v._fullBtn) {
+        v._fullBtn.hidden = true;
+        stage.querySelector('.preview-note').textContent = '完整版';
+      }
+    });
+    v.addEventListener('waiting', () => { if (v._wantPlay && visible(v)) status(v, 'loading'); });
+    v.addEventListener('error', () => { if (v.getAttribute('src')) status(v, 'error'); });
+    v._status.addEventListener('click', () => {
+      if (v.error || v._frame.dataset.state === 'slow') load(v, true);
+      playVideo(v);
+    });
+    if (v._fullBtn) v._fullBtn.addEventListener('click', () => {
+      v._full = true;
+      load(v, true);
+      playVideo(v);
+    });
+    if (v._btn) v._btn.addEventListener('click', (event) => {
+      event.stopPropagation();
+      soundOn = v.muted;
+      if (soundOn) playVideo(v);
+      else { v.muted = true; label(v); }
+    });
+  });
   const pre = new IntersectionObserver((entries) => {
-    for (const e of entries) if (e.isIntersecting) load(e.target._video);
+    for (const e of entries) if (e.isIntersecting) { load(e.target); pre.unobserve(e.target); }
   }, { rootMargin: '50% 0px 50% 0px' });
   const vis = new IntersectionObserver((entries) => {
     for (const e of entries) {
-      if (e.intersectionRatio >= 0.5) playVideo(e.target);
+      if (e.intersectionRatio >= 0.5 && !document.hidden) playVideo(e.target);
       else stopVideo(e.target);
     }
   }, { threshold: [0, 0.5] });
-  videos.forEach((v) => {
-    const sec = v.closest('.opener');
-    sec._video = v;
-    pre.observe(sec);
-    vis.observe(v);
-  });
-  // 切到别的应用／标签页时暂停，回来再按可见情况继续
+  videos.forEach((v) => { pre.observe(v); vis.observe(v); });
+  // 只把点按和按键视为开声操作，滑动手势本身不抢声音。
+  const unlock = (event) => {
+    if (event.target.closest && event.target.closest('.vctl, .loading')) return;
+    if (soundOn && current && current._btn && current.muted && !current.paused) playVideo(current);
+  };
+  ['click', 'keydown'].forEach((type) => document.addEventListener(type, unlock, true));
+  document.addEventListener('WeixinJSBridgeReady', () => { if (current) playVideo(current); });
   document.addEventListener('visibilitychange', () => {
-    if (document.hidden) videos.forEach((v) => v.pause());
+    if (document.hidden) videos.forEach(stopVideo);
+    else { const v = videos.find(visible); if (v) playVideo(v); }
   });
-
-  // 一个按钮切换：有声时显示“静音”，静音时显示“开声音”
-  document.querySelectorAll('.snd').forEach((btn) => {
-    btn.addEventListener('click', (ev) => {
-      ev.stopPropagation();
-      const v = btn._video;
-      if (v.muted) {
-        soundOn = true;
-        videos.forEach((o) => { if (o !== v) { o.muted = true; label(o); } });
-        load(v);
-        v.muted = false;
-        v.play().then(() => label(v)).catch(() => { v.muted = true; label(v); v.play().catch(() => {}); });
-      } else {
-        soundOn = false;
-        v.muted = true;
-      }
-      label(v);
-    });
-  });
+  window.addEventListener('pagehide', () => videos.forEach(stopVideo));
 
   // ---------- 拖动对比 ----------
   function setX(el, pct) {
@@ -216,9 +277,17 @@
 
   // 平滑滚动（滚轮）
   let lenis = null;
-  if (window.Lenis) {
+  const startSmoothScroll = () => {
+    if (!window.Lenis || lenis) return;
     lenis = new Lenis({ duration: 1.15, smoothWheel: true });
     root.classList.add('lenis');
+  };
+  if (window.Lenis) startSmoothScroll();
+  else {
+    const script = document.createElement('script');
+    script.src = 'assets/lib/lenis.min.js';
+    script.onload = startSmoothScroll;
+    document.head.appendChild(script);
   }
   document.querySelectorAll('a[href^="#"]').forEach((a) => a.addEventListener('click', (ev) => {
     const target = document.querySelector(a.getAttribute('href'));
