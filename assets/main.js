@@ -39,13 +39,57 @@
   const pickRes = () => (window.innerWidth >= 900 && window.innerWidth * (window.devicePixelRatio || 1) >= 1400 ? '1080' : '720');
   const load = (v) => { if (!v.src) { v.src = v.dataset.src + '-' + pickRes() + '.mp4'; v.preload = 'auto'; } };
   const videos = [...document.querySelectorAll('video.bgv')];
+
+  // 声音：带“开声音”按钮的视频默认想要出声（soundOn）。
+  // 浏览器不允许未点击前自动出声时，先静音播放；用户在页面上第一次点击后自动打开声音。
+  // 点了“静音”就不再自动开。同一时间只让当前画面里的那段出声。
+  let soundOn = true;
+  let current = null;
+  videos.forEach((v) => {
+    const btn = v.closest('.stage').querySelector('.snd');
+    if (btn) { v._btn = btn; btn._video = v; }
+  });
+  const label = (v) => { if (v._btn) v._btn.textContent = v.muted ? '开声音' : '静音'; };
+  function playVideo(v) {
+    load(v);
+    current = v;
+    if (v._btn && soundOn) {
+      videos.forEach((o) => { if (o !== v) { o.muted = true; label(o); } });
+      v.muted = false;
+      v.play().then(() => label(v)).catch(() => {
+        v.muted = true;
+        label(v);
+        v.play().catch(() => {});
+      });
+    } else {
+      v.muted = true;
+      label(v);
+      v.play().catch(() => {});
+    }
+  }
+  function stopVideo(v) {
+    v.pause();
+    if (current === v) current = null;
+  }
+  // 第一次点击／触摸后，把当前画面里的视频声音打开（必须在点击事件里同步调用才被允许）
+  const unlock = (ev) => {
+    if (ev.target && ev.target.closest && ev.target.closest('.snd')) return;  // 点的是按钮本身，交给按钮处理
+    const v = current;
+    if (!soundOn || !v || !v._btn || !v.muted || v.paused) return;
+    v.muted = false;
+    v.play().then(() => label(v)).catch(() => { v.muted = true; label(v); });
+  };
+  ['click', 'touchend', 'keydown'].forEach((t) => document.addEventListener(t, unlock, true));
+  // 微信内置浏览器：桥接就绪后可以尝试直接带声音播放
+  document.addEventListener('WeixinJSBridgeReady', () => { if (current) playVideo(current); });
+
   if (mobile) {
     const vio = new IntersectionObserver((entries) => {
       for (const e of entries) {
         const v = e.target;
         if (e.isIntersecting) load(v);
-        if (e.intersectionRatio >= 0.6) v.play().catch(() => {});
-        else v.pause();
+        if (e.intersectionRatio >= 0.6) playVideo(v);
+        else stopVideo(v);
       }
     }, { threshold: [0, 0.6] });
     videos.forEach((v) => vio.observe(v));
@@ -53,31 +97,29 @@
     const vio = new IntersectionObserver((entries) => {
       for (const e of entries) {
         const v = e.target._video;
-        if (e.isIntersecting) { load(v); v.play().catch(() => {}); }
-        else v.pause();
+        if (e.isIntersecting) playVideo(v);
+        else stopVideo(v);
       }
     }, { rootMargin: '30% 0px 30% 0px' });
     videos.forEach((v) => { const sec = v.closest('.opener'); sec._video = v; vio.observe(sec); });
   }
 
-  // 开声音：同一时间只让一段视频出声
-  const sndButtons = [...document.querySelectorAll('.snd')];
-  const videoOf = (btn) => btn.closest('.stage, .vid').querySelector('video');
-  sndButtons.forEach((btn) => {
-    btn.addEventListener('click', () => {
-      const v = videoOf(btn);
-      const turnOn = v.muted;
-      sndButtons.forEach((b) => { videoOf(b).muted = true; b.textContent = '开声音'; });
-      if (!turnOn) return;
-      load(v);
-      v.muted = false;
-      btn.textContent = '静音';
-      // 浏览器不允许带声音播放时，退回静音继续播，按钮复原
-      v.play().catch(() => {
+  // 一个按钮切换：有声时显示“静音”，静音时显示“开声音”
+  document.querySelectorAll('.snd').forEach((btn) => {
+    btn.addEventListener('click', (ev) => {
+      ev.stopPropagation();
+      const v = btn._video;
+      if (v.muted) {
+        soundOn = true;
+        videos.forEach((o) => { if (o !== v) { o.muted = true; label(o); } });
+        load(v);
+        v.muted = false;
+        v.play().then(() => label(v)).catch(() => { v.muted = true; label(v); v.play().catch(() => {}); });
+      } else {
+        soundOn = false;
         v.muted = true;
-        btn.textContent = '开声音';
-        v.play().catch(() => {});
-      });
+      }
+      label(v);
     });
   });
 
