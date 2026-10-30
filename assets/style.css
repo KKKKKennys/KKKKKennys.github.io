@@ -167,13 +167,6 @@ html.lenis, html.lenis body { height: auto; }
 .info div { font-size: 14px; line-height: 1.6; }
 .info span { display: block; font: 600 10px/1.9 var(--display); letter-spacing: .14em; color: var(--ink3); }
 
-/* 竖屏手机：图片按横幅放在中间，不裁掉构图 */
-@media (orientation: portrait) {
-  .opener .frame { inset: auto 0 auto 0; top: max(34%, 290px); height: 66vw; }
-  .opener .frame.is-video { height: 56.25vw; }
-  .opener .snd { top: calc(max(34%, 290px) + 56.25vw - 42px); right: 10px; padding: 6px 12px; font-size: 12px; }
-  .opener .shade { background: linear-gradient(180deg, rgba(5,8,15,0) 55%, rgba(5,8,15,.55)); }
-}
 
 /* ---------- 横向画廊（竖向滚动带动横向移动） ---------- */
 .hgallery .stage { display: flex; flex-direction: column; justify-content: center; gap: 22px; }
@@ -300,6 +293,71 @@ footer { padding: 24px var(--pad) max(40px, env(safe-area-inset-bottom)); font: 
   .block.two { grid-template-columns: 1fr 1fr; align-items: center; gap: 64px; }
   .pair { grid-template-columns: 1fr 1fr; }
   .faces { gap: 12px; }
+}
+
+/* ---------- 手机（窄屏）：不钉住、不裁图，上下排开；横向内容用手指滑 ---------- */
+@media (max-width: 899px) {
+  /* 顶栏改成毛玻璃横条：内容从下面滑过时被模糊掉，不会和 KENNY 叠字 */
+  .nav {
+    padding-top: max(10px, env(safe-area-inset-top)); padding-bottom: 10px;
+    background: rgba(5, 8, 15, .62);
+    -webkit-backdrop-filter: blur(16px) saturate(140%); backdrop-filter: blur(16px) saturate(140%);
+    border-bottom: 1px solid rgba(255, 255, 255, .08);
+  }
+  .nav nav a { padding: 6px 14px; }
+  /* 点顶栏“作品／联系”跳转时，目标不被顶栏挡住 */
+  #about, #work, #contact, .project { scroll-margin-top: calc(56px + env(safe-area-inset-top)); }
+
+  .hero, .opener, .hgallery, .steps { height: auto !important; }
+  .stage { position: relative; height: auto; overflow: visible; }
+
+  /* 开场：深海图完整显示，文字放在图下面 */
+  .hero .stage { min-height: var(--vh); display: flex; flex-direction: column; justify-content: center; padding: calc(64px + env(safe-area-inset-top)) 0 32px; }
+  .hero .cover { position: relative; inset: auto; height: auto; aspect-ratio: 3 / 2; transform: none; }
+  .hero .shade { display: none; }
+  .hero-copy { position: relative; left: auto; right: auto; bottom: auto; padding: 22px var(--pad) 0; transform: none; opacity: 1; }
+  .hint { position: relative; left: auto; bottom: auto; transform: none; margin-top: 30px; opacity: 1; }
+  .credit { position: relative; right: auto; bottom: auto; padding: 16px var(--pad) 0; text-align: right; }
+
+  /* 项目开篇：编号标题 → 完整画面 → 开声音 → 信息卡，上下排开互不遮挡 */
+  .opener .stage { display: flex; flex-direction: column; padding: 7vh var(--pad) 8vh; }
+  .opener .num { position: relative; left: auto; top: auto; order: 1; }
+  .opener .title { position: relative; left: auto; right: auto; top: auto; order: 2; margin-top: 10px; }
+  .opener .frame { position: relative; inset: auto; order: 3; margin: 22px calc(var(--pad) * -1) 0; }
+  .opener .frame img { height: auto; transform: none; object-fit: contain; }
+  .opener .frame video { height: auto; aspect-ratio: 16 / 9; transform: none; object-fit: contain; }
+  .opener .shade { display: none; }
+  .opener .snd { position: relative; top: auto; right: auto; order: 4; align-self: flex-end; margin-top: 10px; padding: 7px 14px; font-size: 12px; }
+  .opener .info { position: relative; left: auto; right: auto; bottom: auto; order: 5; margin-top: 14px; }
+  .opener .num, .opener .title { --a: 1; }
+  .opener .info { --b: 1; }
+  .opener .rv { transition: opacity 1s var(--ease), transform 1s var(--ease); }
+  .opener .rv:not(.in) { opacity: 0; transform: translate3d(0, 26px, 0); }
+
+  /* 细节画廊：手指左右滑，带吸附，图片按原比例 */
+  .hgallery .stage { padding: 9vh 0 3vh; gap: 16px; }
+  .track {
+    transform: none; width: auto; gap: 12px; padding: 0 var(--pad); scroll-padding: 0 var(--pad);
+    overflow-x: auto; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; scrollbar-width: none;
+  }
+  .track::-webkit-scrollbar { display: none; }
+  .track figure { width: 86vw; scroll-snap-align: start; }
+  .track img { aspect-ratio: auto; height: auto; }
+  .hgallery .head::after, .steps .head::after { content: '左右滑动 →'; display: block; margin-top: 8px; font-size: 12px; color: var(--ink3); }
+
+  /* 迭代过程：同样左右滑，下面的说明跟着切换 */
+  .steps .stage { padding: 9vh 0 3vh; gap: 14px; }
+  .steps .head, .frames, .captions, .dots { width: auto; align-self: stretch; }
+  .steps .head, .dots { padding: 0 var(--pad); }
+  .frames {
+    aspect-ratio: auto; display: flex; gap: 12px; padding: 0 var(--pad); scroll-padding: 0 var(--pad);
+    overflow-x: auto; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; scrollbar-width: none;
+    background: none; border-radius: 0;
+  }
+  .frames::-webkit-scrollbar { display: none; }
+  .frame { position: relative; inset: auto; flex: 0 0 86vw; width: 86vw; height: auto; border-radius: 14px; scroll-snap-align: start; opacity: 1 !important; transform: none !important; }
+  .captions { min-height: 126px; }
+  .captions li { left: var(--pad); right: var(--pad); }
 }
 
 /* ---------- 系统开了“减少动态效果”：关掉钉住和大动画 ---------- */
