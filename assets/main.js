@@ -86,7 +86,9 @@
     stopVideo(v);
     status(v, 'loading');
     v.preload = 'auto';
-    v.src = v.dataset.src + '-' + pickRes(v) + '.mp4';
+    const resolution = pickRes(v);
+    const revision = resolution === 'm480' && v.dataset.previewVersion;
+    v.src = v.dataset.src + '-' + resolution + '.mp4' + (revision ? '?v=' + encodeURIComponent(revision) : '');
     v.load();
   }
   function stopVideo(v) {
