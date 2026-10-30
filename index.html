@@ -12,13 +12,46 @@
 <link rel="preload" as="image" href="assets/img/hero-1600.webp" fetchpriority="high" media="(min-width: 900px)"
   imagesrcset="assets/img/hero-800.webp 800w, assets/img/hero-1600.webp 1600w, assets/img/hero-2400.webp 2400w" imagesizes="100vw">
 <link rel="stylesheet" href="assets/style.css?v=20261031-image-ratio-v3">
+<link rel="stylesheet" href="assets/navigation.css?v=20261031-contact-preview-2">
 </head>
 <body>
 <div class="progress" aria-hidden="true"><i></i></div>
 <header class="nav">
   <a href="#top" class="logo">KENNY</a>
+  <div class="project-progress">
+    <button class="project-toggle" id="project-toggle" type="button" aria-expanded="false" aria-controls="project-menu" aria-label="打开项目导航">
+      <svg class="project-ring" viewBox="0 0 36 36" aria-hidden="true"><circle class="ring-track" cx="18" cy="18" r="14"/><circle class="ring-value" cx="18" cy="18" r="14" pathLength="100"/></svg>
+      <span class="project-current"><span class="project-count">5 个项目</span><span class="project-label">作品导览</span></span>
+      <svg class="project-chevron" viewBox="0 0 20 20" aria-hidden="true"><path d="m6 8 4 4 4-4"/></svg>
+    </button>
+    <div class="project-menu" id="project-menu" hidden data-lenis-prevent>
+      <div class="project-menu-heading"><span>SELECTED WORK</span><span>2026</span></div>
+      <nav aria-label="快速跳转项目">
+        <a data-project-jump href="#nereid"><b>01</b><span>深海科研站<small>场景 · 外观与室内</small></span><i>↗</i></a>
+        <a data-project-jump href="#ak50"><b>02</b><span>AK-50<small>硬表面 · 拆装动画</small></span><i>↗</i></a>
+        <a data-project-jump href="#studio"><b>03</b><span>幻想风工作室<small>场景 · 私单</small></span><i>↗</i></a>
+        <a data-project-jump href="#sprite"><b>04</b><span>聚光灯精灵<small>原创 IP · 角色动画</small></span><i>↗</i></a>
+        <a data-project-jump href="#office"><b>05</b><span>夜间办公室<small>场景 · 夜景灯光</small></span><i>↗</i></a>
+      </nav>
+      <a class="menu-resources" href="#resources">作品集与简历 <span>↓</span></a>
+    </div>
+  </div>
   <nav><a class="glass" href="#work">作品</a><a class="glass" href="#contact">联系</a></nav>
 </header>
+
+<aside class="project-rail" aria-label="项目目录">
+  <a href="#work" class="rail-heading"><span>SELECTED</span><span>WORK / 2026</span></a>
+  <nav class="rail-list" aria-label="五个作品">
+    <div class="rail-track" aria-hidden="true"><i></i></div>
+    <span class="rail-marker" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 2 20.5 21 12 17.5 3.5 21z"/></svg></span>
+    <a data-project-jump data-label="深海科研站" href="#nereid"><b>01</b><span>深海科研站</span></a>
+    <a data-project-jump data-label="AK-50" href="#ak50"><b>02</b><span>AK-50</span></a>
+    <a data-project-jump data-label="幻想风工作室" href="#studio"><b>03</b><span>幻想风工作室</span></a>
+    <a data-project-jump data-label="聚光灯精灵" href="#sprite"><b>04</b><span>聚光灯精灵</span></a>
+    <a data-project-jump data-label="夜间办公室" href="#office"><b>05</b><span>夜间办公室</span></a>
+  </nav>
+  <a class="rail-resources" href="#resources"><span>↓</span> 作品资料</a>
+</aside>
 
 <main>
 
@@ -374,6 +407,33 @@
   </section>
 </article>
 
+<!-- 资料下载：按需下载，不预加载 PDF -->
+<section class="resources wrap" id="resources" aria-labelledby="resources-title">
+  <div class="resource-folder">
+    <button class="folder-toggle" id="folder-toggle" type="button" aria-expanded="false" aria-controls="resource-files">
+      <span class="folder-scene" aria-hidden="true">
+        <span class="folder-tab"></span><span class="folder-back"></span>
+        <span class="folder-paper paper-portfolio"><span>PORTFOLIO</span><b>2026</b><i></i><i></i></span>
+        <span class="folder-paper paper-resume"><span>RESUME</span><b>KENNY</b><i></i><i></i></span>
+        <span class="folder-front"><span class="folder-stamp">K.</span><span class="folder-wordmark">SELECTED WORK<span>李铿 / KENNY</span></span><span class="folder-filecount">02 FILES</span></span>
+      </span>
+      <span class="folder-action"><span>打开资料夹</span><i>↗</i></span>
+    </button>
+    <div class="resource-copy">
+      <p class="eyebrow">Take a closer look</p>
+      <h2 id="resources-title">作品资料</h2>
+      <p class="resource-intro">完整作品集与一页简历，留一份慢慢看。</p>
+      <div class="resource-panel" id="resource-files" role="group" aria-label="作品集与简历下载">
+        <div class="resource-panel-inner">
+          <a class="resource-download" href="assets/files/likeng-portfolio.pdf?v=20261031-education" download="李铿_作品集.pdf"><span class="document-icon" aria-hidden="true">PDF</span><span><b>完整作品集</b><small>16 页 · 5 个项目 · 3.2 MB</small></span><i aria-hidden="true">↓</i></a>
+          <a class="resource-download" href="assets/files/likeng-resume.pdf?v=20261031-skill" download="李铿_简历.pdf"><span class="document-icon" aria-hidden="true">PDF</span><span><b>个人简历</b><small>一页简历 · 1.6 MB</small></span><i aria-hidden="true">↓</i></a>
+        </div>
+      </div>
+      <p class="resource-hint">PDF 格式，可下载保存或打印。</p>
+    </div>
+  </div>
+</section>
+
 <!-- 联系 -->
 <section class="contact" id="contact">
   <img style="background:#0b1018 url(data:image/webp;base64,UklGRpQAAABXRUJQVlA4IIgAAABQBACdASoYABIAPu1qrlCppaQiqAqpMB2JZgCdMoABXMucSscHHc8Zm1QAAP7lr4Ru4cUdXJ1hQJeN0KyK518Lw4gaX7PCjsLCIAdGknZ2324jewX0kEP6yLLwePrIdJ8mN/Sk/qZkU2i+Szk6XUyI6mZcKKFDIFapERaR+aq9FmuizWTMwAAA) center/cover no-repeat" width="1600" height="1231" class="bgimg" src="assets/img/nereid-07-1600.webp" alt="" loading="lazy">
@@ -382,18 +442,20 @@
   <p class="who reveal">李铿 <em>KENNY</em> · 3D 美术 · 场景／道具方向</p>
   <div class="cards">
     <div class="glass qrcard reveal"><img style="background:#0b1018 url(data:image/webp;base64,UklGRtwAAABXRUJQVlA4INAAAABQBQCdASoYABgAPu1oqVAppaOiqA1RMB2JQAHPluAt/A4W/dfF/GrWW8UwXWjU1DiZQAAA/u46FBY8gduNR4H4ikpDLyl+2j6exFoy8JLToEAkLhO6HL692cMXYSAPEOf4T4f58M19I2llkX8LjiYkaW0f/yacY6lkXOV1Pu9P8ndqRcy9HMwd8XgxkhqSJmjgEZm8rE9J1acWRSzLOklfCM6VB1PniowMfZuzQcEiXeLqr5pSWWyrS635+Z00ls4/0Rj/LS9f6f0mbcDBlngA) center/cover no-repeat" width="728" height="721" src="assets/img/wechat-qr.png" alt="微信二维码" loading="lazy"><span>扫码／长按识别加微信</span></div>
-    <div class="glass links reveal" style="--d:.1s">
-      <a href="mailto:1819193862@qq.com"><span>EMAIL</span>1819193862@qq.com</a>
-      <a href="assets/files/likeng-portfolio.pdf?v=20261031-education" download="李铿_作品集.pdf"><span>PDF</span>下载作品集（3 MB）</a>
-      <a href="#top"><span>TOP</span>回到顶部</a>
+    <div class="glass links contact-details reveal" style="--d:.1s">
+      <p class="contact-kicker">CONTACT</p>
+      <h3>联系我</h3>
+      <a href="mailto:1819193862@qq.com"><span>EMAIL</span><strong>1819193862@qq.com</strong></a>
+      <p class="contact-note">点击邮箱发送邮件，或扫码添加微信。</p>
     </div>
   </div>
   <p class="credits">Whale model by Allie2k (Sketchfab), CC BY　｜　幻想风角色工作室中的角色头模为网络资源，品牌标识归客户所有　｜　部分项目运用 AI 工具辅助建模与流程</p>
 </section>
 
 </main>
-<footer>李铿 KENNY — PORTFOLIO 2026</footer>
+<footer><span>李铿 KENNY — PORTFOLIO 2026</span><div class="footer-actions"><a class="back-to-top" href="#top">回到顶部 ↑</a><a href="https://rareui.com" target="_blank" rel="noopener noreferrer">Interactions inspired by Rare UI ↗</a></div></footer>
 
-<script defer src="assets/main.js?v=20261031-ak50-preview-v4"></script>
+<script defer src="assets/main.js?v=20261031-rare-preview-1"></script>
+<script defer src="assets/navigation.js?v=20261031-rare-preview-1"></script>
 </body>
 </html>

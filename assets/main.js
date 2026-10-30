@@ -175,7 +175,7 @@
   videos.forEach((v) => { pre.observe(v); vis.observe(v); });
   // 只把点按和按键视为开声操作，滑动手势本身不抢声音。
   const unlock = (event) => {
-    if (event.target.closest && event.target.closest('.vctl, .loading')) return;
+    if (event.target.closest && event.target.closest('.vctl, .loading, .project-progress, .project-rail, .resource-folder')) return;
     if (soundOn && current && current._btn && current.muted && !current.paused) playVideo(current);
   };
   ['click', 'keydown'].forEach((type) => document.addEventListener(type, unlock, true));
@@ -295,8 +295,10 @@
     const target = document.querySelector(a.getAttribute('href'));
     if (!target) return;
     ev.preventDefault();
-    if (lenis) lenis.scrollTo(target, { duration: 1.6 });
-    else target.scrollIntoView({ behavior: 'smooth' });
+    const opener = a.hasAttribute('data-project-jump') && target.querySelector('.opener');
+    const offset = opener ? Math.max(0, opener.offsetHeight - window.innerHeight) * .22 : 0;
+    if (lenis) lenis.scrollTo(target, { duration: 1.2, offset });
+    else window.scrollTo({ top: target.getBoundingClientRect().top + window.scrollY + offset, behavior: 'smooth' });
   }));
 
   // 场景测量
