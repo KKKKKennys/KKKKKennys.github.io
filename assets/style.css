@@ -100,6 +100,7 @@ html.lenis, html.lenis body { height: auto; }
 }
 .hint i { width: 1px; height: 38px; background: linear-gradient(var(--ink2), transparent); animation: drip 1.8s var(--ease) infinite; transform-origin: 50% 0; }
 @keyframes drip { 0% { transform: scaleY(0); } 60% { transform: scaleY(1); opacity: 1; } 100% { transform: scaleY(1); opacity: 0; } }
+.hint .on-phone { display: none; }
 .credit { position: absolute; right: var(--pad); bottom: 8px; font-size: 10px; color: var(--ink3); }
 
 /* ---------- 关于我 ---------- */
@@ -316,7 +317,11 @@ footer { padding: 24px var(--pad) max(40px, env(safe-area-inset-bottom)); font: 
   .hero .cover { position: relative; inset: auto; height: auto; aspect-ratio: 3 / 2; transform: none; }
   .hero .shade { display: none; }
   .hero-copy { position: relative; left: auto; right: auto; bottom: auto; padding: 22px var(--pad) 0; transform: none; opacity: 1; }
-  .hint { position: relative; left: auto; bottom: auto; transform: none; margin-top: 30px; opacity: 1; }
+  .hint { position: relative; left: auto; bottom: auto; transform: none; margin-top: 30px; opacity: 1; flex-direction: column-reverse; }
+  /* 手机：提示“上滑”，引导线从下往上长，和手指方向一致 */
+  .hint .on-desk { display: none; }
+  .hint .on-phone { display: inline; }
+  .hint i { background: linear-gradient(transparent, var(--ink2)); transform-origin: 50% 100%; }
   .credit { position: relative; right: auto; bottom: auto; padding: 16px var(--pad) 0; text-align: right; }
 
   /* 项目开篇：编号标题 → 完整画面 → 开声音 → 信息卡，上下排开互不遮挡 */
