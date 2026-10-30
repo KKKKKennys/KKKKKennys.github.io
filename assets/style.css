@@ -191,8 +191,8 @@ figcaption b { font: 600 11px var(--display); color: var(--accent); margin-right
 .steps .stage { display: flex; flex-direction: column; justify-content: center; gap: 16px; padding: 64px var(--pad) 24px; }
 .steps .head, .frames, .captions, .dots { width: min(100%, calc(var(--vh) * .56 * var(--ar))); align-self: center; }
 .frames { position: relative; aspect-ratio: var(--ar); border-radius: 14px; overflow: hidden; background: #0b1018; }
-.frame { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; will-change: opacity, transform; }
-.frame:first-child { opacity: 1; }
+.frames .frame { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; will-change: opacity, transform; }
+.frames .frame:first-child { opacity: 1; }
 .captions { position: relative; min-height: 132px; }
 .captions li { position: absolute; inset: 0; opacity: 0; transform: translateY(14px); transition: opacity .5s var(--ease), transform .5s var(--ease); }
 .captions li.on { opacity: 1; transform: none; }
@@ -360,7 +360,7 @@ footer { padding: 24px var(--pad) max(40px, env(safe-area-inset-bottom)); font: 
     background: none; border-radius: 0;
   }
   .frames::-webkit-scrollbar { display: none; }
-  .frame { position: relative; inset: auto; flex: 0 0 86vw; width: 86vw; height: auto; border-radius: 14px; scroll-snap-align: start; opacity: 1 !important; transform: none !important; }
+  .frames .frame { position: relative; inset: auto; flex: 0 0 86vw; width: 86vw; height: auto; border-radius: 14px; scroll-snap-align: start; opacity: 1 !important; transform: none !important; }
   .captions { min-height: 126px; }
   .captions li { left: var(--pad); right: var(--pad); }
 }
@@ -374,7 +374,7 @@ footer { padding: 24px var(--pad) max(40px, env(safe-area-inset-bottom)); font: 
   .track figure { scroll-snap-align: start; }
   .steps .stage { height: auto; }
   .frames { aspect-ratio: auto; display: grid; gap: 12px; background: none; }
-  .frame { position: relative; opacity: 1 !important; transform: none !important; border-radius: 14px; }
+  .frames .frame { position: relative; opacity: 1 !important; transform: none !important; border-radius: 14px; }
   .captions li { position: relative; opacity: 1; transform: none; margin-bottom: 12px; }
   .hero .cover, .opener .frame img, .hero-copy, .opener .num, .opener .title, .opener .info { transform: none !important; opacity: 1 !important; }
   .reveal, .rimg, .rimg img, .rig .bones { opacity: 1; transform: none; clip-path: none; transition: none; }
