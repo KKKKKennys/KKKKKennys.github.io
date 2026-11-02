@@ -421,3 +421,8 @@ html:not(.js) .opener .info { opacity: 1; transform: none; clip-path: none; }
   .reveal, .rimg, .rimg img, .rig .bones { opacity: 1; transform: none; clip-path: none; transition: none; }
   .word span { transform: none; }
 }
+
+/* NEREID V56: preserve the film composition and offer the original 1080p file. */
+#nereid .opener .frame video { object-fit: contain; transform: none; }
+.vctl .film-link { display: inline-flex; align-items: center; padding: 8px 15px; border-radius: 99px; font-size: 13px; }
+@media (max-width: 899px) { .vctl .film-link { padding: 7px 14px; font-size: 12px; } }

@@ -64,7 +64,7 @@
     v._btn.textContent = v.muted ? '开声音' : '静音';
     v._btn.setAttribute('aria-pressed', String(!v.muted));
   };
-  const pickRes = (v) => mobile ? (v._full ? '720' : 'm480') :
+  const pickRes = (v) => mobile ? (v.dataset.mobileResolution || (v._full ? '720' : 'm480')) :
     (innerWidth * (devicePixelRatio || 1) >= 1400 ? '1080' : '720');
   function status(v, state) {
     clearTimeout(v._waitTimer);
