@@ -15,6 +15,7 @@
   const sections = railLinks.map(a => ({
     id: a.hash.slice(1), label: a.dataset.label, node: document.getElementById(a.hash.slice(1))
   }));
+  const about = document.getElementById('about');
   const resources = document.getElementById('resources');
   const contact = document.getElementById('contact');
   const folder = document.querySelector('.resource-folder');
@@ -23,6 +24,7 @@
   let openAt = 0;
   let active = '';
   let bounds = [];
+  let aboutTop = 0;
   let resourceTop = 0;
   let contactTop = 0;
   let queued = false;
@@ -74,21 +76,22 @@
     const reading = y + Math.min(innerHeight * .32, 240);
     let index = -1;
     for (let i = 0; i < bounds.length; i++) if (reading >= bounds[i]) index = i;
+    const atAbout = reading >= aboutTop;
     const atResources = reading >= resourceTop;
     const atContact = reading >= contactTop;
-    const next = atContact ? 'contact' : atResources ? 'resources' : index < 0 ? 'overview' : sections[index].id;
+    const next = atContact ? 'contact' : atResources ? 'resources' : atAbout ? 'about' : index < 0 ? 'overview' : sections[index].id;
     if (next === active) return;
     active = next;
-    const selected = atResources || index < 0 ? -1 : index;
+    const selected = atAbout || index < 0 ? -1 : index;
     allLinks.forEach(a => {
       const on = a.hash === '#' + next;
       if (on) a.setAttribute('aria-current', 'location');
       else a.removeAttribute('aria-current');
     });
-    railLinks.forEach((a, i) => a.classList.toggle('is-past', i < index || atResources));
+    railLinks.forEach((a, i) => a.classList.toggle('is-past', i < index || atAbout));
     const n = selected < 0 ? '' : String(selected + 1).padStart(2, '0');
-    count.textContent = atContact ? 'LET’S TALK' : atResources ? '02 FILES' : n ? n + ' / 05' : '5 个项目';
-    label.textContent = atContact ? '联系我' : atResources ? '作品资料' : selected < 0 ? '作品导览' : sections[selected].label;
+    count.textContent = atContact ? 'LET’S TALK' : atResources ? '02 FILES' : atAbout ? 'ABOUT KENNY' : n ? n + ' / 05' : '5 个项目';
+    label.textContent = atContact ? '联系我' : atResources ? '作品资料' : atAbout ? '关于我' : selected < 0 ? '作品导览' : sections[selected].label;
     current.classList.remove('is-changing');
     requestAnimationFrame(() => current.classList.add('is-changing'));
     rail.classList.toggle('has-project', selected >= 0);
@@ -97,7 +100,7 @@
       const center = dot.offsetTop + dot.offsetHeight / 2;
       rail.style.setProperty('--rail-y', (center - 8.5) + 'px');
       rail.style.setProperty('--rail-fill', Math.max(0, center - 26) + 'px');
-    } else rail.style.setProperty('--rail-fill', atResources ? '100%' : '0px');
+    } else rail.style.setProperty('--rail-fill', atAbout ? '100%' : '0px');
     document.querySelectorAll('.rail-resources').forEach(a => {
       if (atResources && !atContact) a.setAttribute('aria-current', 'location');
       else a.removeAttribute('aria-current');
@@ -107,6 +110,7 @@
   function measure() {
     measureQueued = false;
     bounds = sections.map(s => s.node.getBoundingClientRect().top + scrollY);
+    aboutTop = about.getBoundingClientRect().top + scrollY;
     resourceTop = resources.getBoundingClientRect().top + scrollY;
     contactTop = contact.getBoundingClientRect().top + scrollY;
     active = '';
